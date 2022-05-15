@@ -22,4 +22,9 @@ public class MemberServiceImpl implements MemberService{
     public List<Member> getAllMember() {
         return null;
     }
+
+    @Override
+    public void insertMember(Member member) {
+        memberMapper.insertMember(member);
+    }
 }

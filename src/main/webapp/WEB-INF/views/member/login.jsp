@@ -29,9 +29,10 @@
     <div class="content" style="border: 1px solid gray">
         <form method="post" action="/member/loginProc.do">
             <h1>Login</h1>
-            <input type="text" id="id" name="id" placeholder="아이디 입력"><br>
-            <input type="password" id="pwd" name="pwd" placeholder="비밀번호 입력">
-            <input type="submit" value="로그인"><br><br>
+            <label for="id">ID</label><br>
+                <input type="text" id="id" name="id" placeholder="아이디 입력"><input type="submit" value="로그인"><br>
+            <label for="pwd">Password</label><br>
+            <input type="password" id="pwd" name="pwd" placeholder="비밀번호 입력"><br><br>
             <input type="button" value="회원 가입" onclick="location.href='/member/join.do'">
         </form>
     </div>

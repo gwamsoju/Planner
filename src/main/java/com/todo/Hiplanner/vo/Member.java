@@ -15,5 +15,5 @@ public class Member {
     private String job;
     private String mail;
     private String phone;
-
+    private String gender;
 }

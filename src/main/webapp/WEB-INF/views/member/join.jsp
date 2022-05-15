@@ -23,6 +23,22 @@
             border-radius: 2rem;
         }
     </style>
+    <script type="text/javascript">
+
+        function passConfirm(){
+            const pwd = document.getElementById('pwd');
+            const pwd_re = document.getElementById('pwd_re');
+            const message = document.getElementById('message');
+
+            if(pwd.value == pwd_re.value){
+                message.innerHTML = "비밀번호 일치";
+                message.style.color = 'green';
+            }else{
+                message.innerHTML = "비밀번호 불일치";
+                message.style.color = 'red';
+            }
+        }
+    </script>
 </head>
 <body>
 <div class="wrapper">
@@ -30,21 +46,23 @@
         <H1>회원 가입</H1><br>
         <form method="post" action="/member/joinProc.do">
             <div>
-                <label for="name">이름</label>
-                <input name="name" id="name" type="text" placeholder="이름을 입력해주세요."/>
-            </div><br>
-            <div>
                 <label for="id">아이디</label>
                 <input name="id" id="id" type="text" placeholder="아이디 입력"/>
                 <input type="button" value="중복 체크"/>
             </div><br>
+            <div>
+                <label for="name">이름</label>
+                <input name="name" id="name" type="text" placeholder="이름을 입력해주세요."/>
+            </div><br>
+
             <div>
                 <label for="pwd">비밀번호</label>
                 <input name="pwd" id="pwd" type="password" placeholder="비밀번호 입력"/>
             </div><br>
             <div>
                 <label for="pwd_re">비밀번호 확인</label>
-                <input name="pwd_re" id="pwd_re" type="password" placeholder="비밀번호 한 번 더 입력."/>
+                <input name="pwd_re" id="pwd_re" type="password" placeholder="비밀번호 한 번 더 입력." onchange="passConfirm()"/><br>
+                <span id="message"></span>
             </div><br>
             <div>
                 <label for="mail">이메일</label>
@@ -63,6 +81,11 @@
             <div>
                 <label for="phone">전화번호</label>
                 <input name="phone" id="phone" type="text" placeholder="'-'도 입력"/>
+            </div><br>
+            <div>
+                성별
+                <input type="radio" name="gender" value="M"/>남자
+                <input type="radio" name="gender" value="F"/>여자
             </div><br><br>
             <div>
                 <input type="submit" value="가입하기"/>

@@ -11,6 +11,7 @@ public interface MemberMapper {
     public int getCnt();
     //XML 방식
     public int getCnt2(Member member);
+    public void insertMember(Member member);
 }
 
 

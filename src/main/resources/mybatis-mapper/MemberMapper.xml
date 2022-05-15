@@ -12,7 +12,10 @@
               id =#{id}
               and pwd = #{pwd}
     </select>
-
+    <insert id="insertMember" parameterType="com.todo.Hiplanner.vo.Member">
+        insert into MEMBER
+        values(#{id},#{name},#{pwd},#{job},#{mail},#{phone},#{gender})
+    </insert>
 
 </mapper>
 

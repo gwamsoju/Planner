@@ -33,7 +33,6 @@ public class MemberController {
         }
         return mv;
     }
-
     @GetMapping("/logoutProc.do")
     public ModelAndView logoutDo(ModelAndView mv, RedirectView rv, HttpSession session){
         session.removeAttribute("id");
@@ -42,11 +41,16 @@ public class MemberController {
         mv.setView(rv);
         return mv;
     }
-
     @GetMapping("/join.do")
     public String joinForm(){
         return "/member/join";
     }
 
-
+    @PostMapping("/joinProc.do")
+    public ModelAndView joinProc(Member member, RedirectView rv, ModelAndView mv){
+        memberService.insertMember(member);
+        rv.setUrl("/");
+        mv.setView(rv);
+        return mv;
+    }
 }
