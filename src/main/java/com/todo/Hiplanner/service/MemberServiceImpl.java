@@ -27,4 +27,12 @@ public class MemberServiceImpl implements MemberService{
     public void insertMember(Member member) {
         memberMapper.insertMember(member);
     }
+
+    @Override
+    public int CheckId(Member member) {
+        int SameId = memberMapper.CheckId(member);
+        return SameId;
+    }
+
+
 }

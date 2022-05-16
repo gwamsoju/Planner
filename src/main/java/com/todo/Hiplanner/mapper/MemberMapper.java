@@ -12,6 +12,7 @@ public interface MemberMapper {
     //XML 방식
     public int getCnt2(Member member);
     public void insertMember(Member member);
+    public int CheckId(Member member);
 }
 
 

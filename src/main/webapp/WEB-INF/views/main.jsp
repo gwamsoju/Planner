@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Hi Planner</title>
@@ -35,7 +36,10 @@
 <div class="wrapper">
     <div class="content">
 
-        ${Memo.title}&nbsp${Memo.content}<br>
+        <c:forEach items="${memoList}" var="memo" >
+            ${memo.title}<br>
+            ${memo.content}
+        </c:forEach>
             <input type="button" value="글 작성" onclick="location.href='/planner/writeFrom.do'">
     </div>
 </div>

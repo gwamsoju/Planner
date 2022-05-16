@@ -2,7 +2,10 @@ package com.todo.Hiplanner.service;
 
 import com.todo.Hiplanner.vo.Memo;
 
+import java.util.List;
+
 public interface MemoService {
 
-    public Memo getMemo(Memo memo);
+    public List<Memo> getMemo(Memo memo);
+
 }

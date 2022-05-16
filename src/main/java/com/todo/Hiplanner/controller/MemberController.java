@@ -9,10 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/member")
@@ -26,11 +28,11 @@ public class MemberController {
     @PostMapping("/loginProc.do")
     public ModelAndView loginDo(ModelAndView mv, Member member, HttpSession session, RedirectView rv, Memo memo){
         int count = memberService.getLogin(member);
-       Memo memo1 = memoService.getMemo(memo);
+        List<Memo> memoList= memoService.getMemo(memo);
         if(count == 1){
             session.setAttribute("id", member.getId());
             System.out.println("member.getId() = " + member.getId());
-            mv.addObject("Memo",memo1);
+            mv.addObject("memoList",memoList);
             mv.setViewName("main");
         }else{
             rv.setUrl("/");
@@ -52,10 +54,21 @@ public class MemberController {
     }
 
     @PostMapping("/joinProc.do")
-    public ModelAndView joinProc(Member member, RedirectView rv, ModelAndView mv){
-        memberService.insertMember(member);
-        rv.setUrl("/");
-        mv.setView(rv);
-        return mv;
+    public String joinProc(Member member, RedirectView rv,String id){
+        int result = memberService.CheckId(member);
+
+        if(result == 1){
+            return "/member/join";
+        }else{
+            memberService.insertMember(member);
+            return "redirect:/";
+        }
     }
+
+    @ResponseBody
+    @RequestMapping("/IdCheck")
+    public int idCheck(Member member){
+        return memberService.CheckId(member);
+    }
+
 }

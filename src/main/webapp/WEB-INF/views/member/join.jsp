@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Hi Planner</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <style type="text/css">
         .wrapper {
             display: grid;
@@ -38,17 +39,62 @@
                 message.style.color = 'red';
             }
         }
+
+        function joinConfirm(){
+            const id = document.getElementById('id');
+            const name = document.getElementById('name');
+            const mail = document.getElementById('mail');
+            const job = document.getElementById('job');
+            const phone = document.getElementById('phone');
+            const gender = document.getElementById('gender');
+
+           if(id.value == ""){
+               alert('아이디를 입력해주세요.');
+               id.focus();
+               return false;
+           }else if(name.value == ""){
+               alert('이름을 입력해주세요.');
+               name.focus();
+               return false;
+           }else if(mail.value ==""){
+               alert('이메일을 입력해주세요.');
+               return false;
+           }else if(job.value == ""){
+               alert('직업을 선택 혹은 직접 입력해주세요.');
+               return false;
+           }else if(phone.value == ""){
+               alert('전화번호를 입력해주세요.');
+               return false;
+           }
+           return true;
+        }
+
+        function idCheck(){
+            $.ajax({
+                url:"/member/IdCheck",
+                type:"POST",
+                dataType:"JSON",
+                data:{"id":$("#id").val()},
+                success:function(data){
+                    if(data == 1){
+                        alert("중복된 아이디입니다.");
+                    }else if(data ==0){
+                        alert("사용가능한 아이디입니다.");
+                    }
+                }
+            })
+        }
     </script>
 </head>
 <body>
 <div class="wrapper">
     <div class="content" style="border: 1px solid gray">
-        <H1>회원 가입</H1><br>
-        <form method="post" action="/member/joinProc.do">
+        <h1>회원 가입</h1><br>
+        <form method="post" action="/member/joinProc.do" onsubmit="return joinConfirm()">
             <div>
                 <label for="id">아이디</label>
                 <input name="id" id="id" type="text" placeholder="아이디 입력"/>
-                <input type="button" value="중복 체크"/>
+                <input type="button" value="중복 체크" onclick="idCheck()"/>
             </div><br>
             <div>
                 <label for="name">이름</label>
@@ -85,10 +131,10 @@
             <div>
                 성별
                 <input type="radio" name="gender" value="M"/>남자
-                <input type="radio" name="gender" value="F"/>여자
+                <input type="radio" name="gender" value="W"/>여자
             </div><br><br>
             <div>
-                <input type="submit" value="가입하기"/>
+                <input type="submit" value="가입하기" />
                 <input type="reset" value="다시 작성"/>
                 <input type="button" value="로그인 화면으로" onclick="location.href='/'"/>
             </div>
