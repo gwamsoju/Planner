@@ -1,11 +1,11 @@
 <%--
   Created by IntelliJ IDEA.
   User: LEE Jaeyeong
-  Date: 2022-05-13
-  Time: 오후 1:00
+  Date: 2022-05-16
+  Time: 오후 1:29
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Hi Planner</title>
@@ -27,16 +27,27 @@
 <body>
 <div style="background: darkgray">
     <p style="text-align: right">
-        <strong>${id}</strong>님 환영합니다.<br>
+        <strong>${Data}</strong>님 환영합니다.<br>
         <input type="button" value="로그아웃" onclick="location.href='/member/logoutProc.do'"></input>
     </p>
 </div>
-<h1>To Do This Week !</h1>
+
 <div class="wrapper">
     <div class="content">
-
-        ${Memo.title}&nbsp${Memo.content}<br>
-            <input type="button" value="글 작성" onclick="location.href='/planner/writeFrom.do'">
+        <h1>Write Do!</h1>
+        <form method="post" action="/planner/writeFinish.do">
+            <div>
+                <label for="title">제목</label>
+                <input type="text" id="title" name="title"/><br><br>
+            </div>
+            <div>
+                <label for="content">내용</label>
+                <textarea  id="content" name="content" cols="30" rows="5" ></textarea>
+            </div>
+            <br><br>
+            <input type="submit" value="작성"/>
+            <input type="reset" value="다시 작성"/>
+        </form>
     </div>
 </div>
 </body>

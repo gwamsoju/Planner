@@ -1,0 +1,24 @@
+package com.todo.Hiplanner.vo;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.sql.Date;
+
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+public class Memo {
+
+    private long do_num;
+    private String title;
+    private String content;
+    private Date wdate;
+    private Date udate;
+    private Date ddate;
+    private String id;
+
+}
