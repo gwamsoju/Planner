@@ -48,7 +48,7 @@
     </p>
 </div>
 <div class="wrapper">
-    <div class="content">
+    <div class="content" style="border: 1px solid gray">
         <h1 style="text-align: center">Member Info</h1>
         <form method="post" action="/member/edit.do">
         <div>

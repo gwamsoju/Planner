@@ -13,7 +13,7 @@
         .wrapper {
             display: grid;
             place-items: center;
-            min-height: 100vh;
+            min-height: 50vh;
         }
 
         .content {
@@ -32,17 +32,20 @@
     </p>
 </div>
 
-<div class="wrapper">
-    <div class="content">
+<div class="wrapper" >
+    <div class="content" style="border: 1px solid gray">
         <h1>Write Do!</h1>
         <form method="post" action="/planner/writeFinish.do">
             <div>
-                <label for="title">제목</label>
-                <input type="text" id="title" name="title"/><br><br>
+                <label for="begin">Date</label><br>
+                <input type="text" id="begin" name="begin" placeholder="YYYY/MM/DD"/><br><br>
             </div>
             <div>
+                <label for="title">제목</label><br>
+                <input type="text" id="title" name="title"/>
                 <label for="content">내용</label>
-                <textarea  id="content" name="content" cols="30" rows="5" ></textarea>
+                <input type="text" id="content" name="content"/>
+
             </div>
             <br><br>
             <input type="submit" value="작성"/>

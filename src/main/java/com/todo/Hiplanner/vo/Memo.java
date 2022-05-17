@@ -19,6 +19,7 @@ public class Memo {
     private Date wdate;
     private Date udate;
     private Date ddate;
+    private Date begin;
     private String id;
 
 }

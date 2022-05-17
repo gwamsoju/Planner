@@ -5,7 +5,7 @@
 <mapper namespace="com.todo.Hiplanner.mapper.plannerMapper">
 
     <select id="getMemo" resultType="com.todo.Hiplanner.vo.Memo" parameterType="com.todo.Hiplanner.vo.Memo">
-        select title, content, wdate
+        select title, content, wdate, begin
         from memo where id = #{id}
     </select>
 

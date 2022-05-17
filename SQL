@@ -31,4 +31,5 @@ INSERT INTO MEMO(DO_NUM, TITLE, CONTENT, ID) VALUES(
     MEMO_NUM.NEXTVAL,'공부하기','스프링 공부', 'wodud'
 );
 
+alter table memo add begin Date;
 

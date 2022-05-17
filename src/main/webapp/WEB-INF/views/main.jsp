@@ -14,14 +14,12 @@
         .wrapper {
             display: grid;
             place-items: center;
-            min-height: 100vh;
         }
-
         .content {
             font-family: system-ui, serif;
             font-size: 1rem;
-            padding: 1rem;
-            border-radius: 2rem;
+            padding: 10px;
+
         }
     </style>
 </head>
@@ -33,16 +31,25 @@
         <input type="button" value="로그아웃" onclick="location.href='/member/logoutProc.do'"/>
     </p>
 </div>
-<h1>To Do This Week !</h1>
-<input type="button" value="일정 추가" onclick="location.href='/planner/writeFrom.do'">
-<input type="button" value="일정 수정" onclick="location.href=''">
-<input type="button" value="일정 삭제" onclick="location.href=''">
+
 <div class="wrapper">
-    <div class="content">
-        <c:forEach items="${memoList}" var="memo" >
-            ${memo.title}<br>
-            ${memo.content}
-        </c:forEach>
+    <h1>What To Do Today !</h1>
+    <div class="content" style="border: 1px solid gray ">
+
+            <c:forEach items="${memoList}" var="memo" >
+                <label for="begin">Date</label><br>
+                <span name="begin" id="begin">${memo.begin}</span><br><br>
+                <hr>
+               ${memo.title}<br>
+                <hr>
+            </c:forEach>
+        <div style="position:relative; width:300px; height:300px;">
+            <div style="position : absolute; clear:left; float:right; width:300px; height:50px; left:0; bottom:0px;">
+                <input type="button" value="일정 추가" onclick="location.href='/planner/writeFrom.do'">
+                <input type="button" value="일정 수정" onclick="location.href=''">
+                <input type="button" value="일정 삭제" onclick="location.href=''">
+            </div>
+        </div>
     </div>
 </div>
 </body>

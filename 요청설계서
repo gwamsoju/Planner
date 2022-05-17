@@ -42,13 +42,6 @@
 실행 함수   : joinProc()
 뷰         : web/WEB-INF/views/login.jsp
 ------------------------------------------------------------------------------------------------------------------------------------------------
-#플래너 작성 폼 요청
-요청 내용   : /member/writeFrom.do
-파라미터    : com.todo.Hiplanner.vo.Memo
-컨트롤러    : com.todo.planner.controller.plannerController
-실행 함수   : writeFrom()
-뷰         : web/WEB-INF/views/planner/plannerWrite.jsp
-------------------------------------------------------------------------------------------------------------------------------------------------
 #회원정보 폼 요청
 요청 내용   : /member/getInfo.do
 파라미터    : id
@@ -63,3 +56,24 @@
 실행 함수   : changeInfo()
 뷰         : web/WEB-INF/views/login.jsp
 ------------------------------------------------------------------------------------------------------------------------------------------------------
+#플래너 작성 폼 요청
+요청 내용   : /member/writeFrom.do
+파라미터    : com.todo.Hiplanner.vo.Memo
+컨트롤러    : com.todo.planner.controller.plannerController
+실행 함수   : writeFrom()
+뷰         : web/WEB-INF/views/planner/plannerWrite.jsp
+------------------------------------------------------------------------------------------------------------------------------------------------
+#메모 조회 요청
+요청 내용   : /member/loginProc.do
+파라미터    : com.todo.Hiplanner.vo.Memo
+컨트롤러    : com.todo.planner.controller.MemberController
+실행 함수   : loginDo()
+뷰         : web/WEB-INF/views/main.jsp
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
