@@ -126,7 +126,7 @@
             </div><br>
             <div>
                 <label for="phone">전화번호</label>
-                <input name="phone" id="phone" type="text" placeholder="'-'도 입력"/>
+                <input name="phone" id="phone" type="tel" placeholder="'-'도 입력"/>
             </div><br>
             <div>
                 성별

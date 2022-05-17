@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
@@ -69,6 +70,22 @@ public class MemberController {
     @RequestMapping("/IdCheck")
     public int idCheck(Member member){
         return memberService.CheckId(member);
+    }
+
+    @GetMapping("/getInfo.do")
+    public ModelAndView getInfo(ModelAndView mv, HttpSession session,String id){
+
+        Member memberinfo = memberService.getInfo(id);
+
+        mv.addObject("member",memberinfo);
+        mv.setViewName("/member/memberInfo");
+        return mv;
+    }
+
+    @PostMapping("/edit.do")
+    public String changeInfo(Member member){
+        memberService.changeInfo(member);
+        return "member/login";
     }
 
 }

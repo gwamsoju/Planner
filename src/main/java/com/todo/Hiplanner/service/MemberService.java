@@ -10,4 +10,6 @@ public interface MemberService {
     public List<Member> getAllMember();
     public void insertMember(Member member);
     public int CheckId(Member member);
+    public Member getInfo(String id);
+    public void changeInfo(Member member);
 }

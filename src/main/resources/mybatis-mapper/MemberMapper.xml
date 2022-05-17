@@ -3,7 +3,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.todo.Hiplanner.mapper.MemberMapper">
-    <select id="getCnt2" resultType="int" parameterType="com.todo.Hiplanner.vo.Member">
+    <!-- 로그인 -->
+    <select id="getLogin" resultType="int" parameterType="com.todo.Hiplanner.vo.Member">
         select
                count(*)
         from
@@ -12,13 +13,30 @@
               id =#{id}
               and pwd = #{pwd}
     </select>
+
+    <!-- 회원 가입 -->
     <insert id="insertMember" parameterType="com.todo.Hiplanner.vo.Member">
         insert into MEMBER
         values(#{id},#{name},#{pwd},#{job},#{mail},#{phone},#{gender})
     </insert>
+
+    <!-- 아이디 중복 체크 -->
     <select id="CheckId" resultType="int" parameterType="com.todo.Hiplanner.vo.Member">
         select count(*) from member where id = #{id}
     </select>
+
+    <!-- 회원 정보 조회 -->
+    <select id="getInfo" resultType="com.todo.Hiplanner.vo.Member" parameterType="String">
+        select id, name, pwd, job, mail, phone, gender
+        from member where id = #{id}
+    </select>
+
+    <!-- 회원 정보 변경 -->
+    <update id="changeInfo" parameterType="com.todo.Hiplanner.vo.Member" >
+        update member
+        set mail = #{mail}, phone = #{phone}, pwd=#{pwd}
+        where id= #{id}
+    </update>
 </mapper>
 
 

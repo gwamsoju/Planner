@@ -28,7 +28,7 @@ public class Test1 {
     //XML 방식
     @Test
     public void getCnt2(){
-        int cnt = memberMapper.getCnt2(member);
+        int cnt = memberMapper.getLogin(member);
 
         assertThat(cnt).isEqualTo(1);
     }

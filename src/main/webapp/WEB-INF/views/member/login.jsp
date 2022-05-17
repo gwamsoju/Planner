@@ -13,7 +13,7 @@
         .wrapper {
             display: grid;
             place-items: center;
-            min-height: 100vh;
+            min-height: 90vh;
         }
 
         .content {

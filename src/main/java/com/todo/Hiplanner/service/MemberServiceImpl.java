@@ -15,7 +15,7 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public int getLogin(Member member) {
-        return memberMapper.getCnt2(member);
+        return memberMapper.getLogin(member);
     }
 
     @Override
@@ -34,5 +34,15 @@ public class MemberServiceImpl implements MemberService{
         return SameId;
     }
 
+    @Override
+    public Member getInfo(String id) {
+        Member member1 = memberMapper.getInfo(id);
+        return member1;
+    }
+
+    @Override
+    public void changeInfo(Member member) {
+        memberMapper.changeInfo(member);
+    }
 
 }

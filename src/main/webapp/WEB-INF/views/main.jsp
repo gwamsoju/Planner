@@ -29,18 +29,20 @@
 <div style="background: darkgray">
     <p style="text-align: right">
         <strong>${id}</strong>님 환영합니다.<br>
-        <input type="button" value="로그아웃" onclick="location.href='/member/logoutProc.do'"></input>
+        <input type="button" value="내 정보" onclick="location.href='/member/getInfo.do?id=${id}'"/>
+        <input type="button" value="로그아웃" onclick="location.href='/member/logoutProc.do'"/>
     </p>
 </div>
 <h1>To Do This Week !</h1>
+<input type="button" value="일정 추가" onclick="location.href='/planner/writeFrom.do'">
+<input type="button" value="일정 수정" onclick="location.href=''">
+<input type="button" value="일정 삭제" onclick="location.href=''">
 <div class="wrapper">
     <div class="content">
-
         <c:forEach items="${memoList}" var="memo" >
             ${memo.title}<br>
             ${memo.content}
         </c:forEach>
-            <input type="button" value="글 작성" onclick="location.href='/planner/writeFrom.do'">
     </div>
 </div>
 </body>
