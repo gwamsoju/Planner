@@ -40,4 +40,14 @@ public class memberTest {
         Member changeMember = memberMapper.getInfo(id);
         assertThat(changeMember.getMail()).isEqualTo(mail);
     }
+
+    @Test
+    public void getLogin(){
+        Member member = new Member();
+        member.setId("wodud");
+        member.setPwd("12345");
+
+        int loginCnt = memberMapper.getLogin(member);
+        assertThat(loginCnt).isEqualTo(1);
+    }
 }
