@@ -26,14 +26,14 @@ public class MemberController {
     private final MemoService memoService;
 
 
-    @PostMapping("/loginProc.do")
+    @RequestMapping("/loginProc.do")
     public ModelAndView loginDo(ModelAndView mv, Member member, HttpSession session, RedirectView rv, Memo memo){
         int count = memberService.getLogin(member);
-        List<Memo> memoList= memoService.getMemo(memo);
+
         if(count == 1){
             session.setAttribute("id", member.getId());
             System.out.println("member.getId() = " + member.getId());
-            mv.addObject("memoList",memoList);
+
             mv.setViewName("main");
         }else{
             rv.setUrl("/");
@@ -41,6 +41,7 @@ public class MemberController {
         }
         return mv;
     }
+
     @GetMapping("/logoutProc.do")
     public ModelAndView logoutDo(ModelAndView mv, RedirectView rv, HttpSession session){
         session.removeAttribute("id");

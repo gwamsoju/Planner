@@ -9,5 +9,6 @@ import java.util.List;
 public interface plannerMapper {
 
     public List<Memo> getMemo(Memo memo);
-
+    public void insertMemo(Memo memo);
+    public Memo getMemoDetail(Memo memo);
 }

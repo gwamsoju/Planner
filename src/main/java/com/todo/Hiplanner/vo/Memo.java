@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Setter
 @Getter
@@ -19,7 +20,7 @@ public class Memo {
     private Date wdate;
     private Date udate;
     private Date ddate;
-    private Date begin;
+    private LocalDate begin;
     private String id;
 
 }

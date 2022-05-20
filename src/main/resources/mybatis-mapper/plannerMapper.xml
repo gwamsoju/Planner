@@ -5,8 +5,16 @@
 <mapper namespace="com.todo.Hiplanner.mapper.plannerMapper">
 
     <select id="getMemo" resultType="com.todo.Hiplanner.vo.Memo" parameterType="com.todo.Hiplanner.vo.Memo">
+        select do_num, title, content, wdate, begin
+        from memo where id = #{id} and begin = #{begin}
+    </select>
+    <insert id="insertMemo" parameterType="com.todo.Hiplanner.vo.Memo">
+        INSERT INTO MEMO(DO_NUM, TITLE, CONTENT, ID, begin) VALUES(
+            MEMO_NUM.NEXTVAL, #{title}, #{content}, #{id}, TO_DATE(#{begin},'YYYY/MM/DD'))
+    </insert>
+    <select id="getMemoDetail" resultType="com.todo.Hiplanner.vo.Memo" parameterType="com.todo.Hiplanner.vo.Memo">
         select title, content, wdate, begin
-        from memo where id = #{id}
+        from memo where id = #{id} and do_num = #{do_num}
     </select>
 
 </mapper>

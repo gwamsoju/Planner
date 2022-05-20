@@ -10,6 +10,7 @@
 <head>
     <title>Hi Planner</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style type="text/css">
         .wrapper {
             display: grid;
@@ -70,19 +71,23 @@
         }
 
         function idCheck(){
-            $.ajax({
-                url:"/member/IdCheck",
-                type:"POST",
-                dataType:"JSON",
-                data:{"id":$("#id").val()},
-                success:function(data){
-                    if(data == 1){
-                        alert("중복된 아이디입니다.");
-                    }else if(data ==0){
-                        alert("사용가능한 아이디입니다.");
+            if($("#id").val() == "" ){
+                alert("아이디를 입력해주세요.");
+            }else {
+                $.ajax({
+                    url: "/member/IdCheck",
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {"id": $("#id").val()},
+                    success: function (data) {
+                        if (data == 1) {
+                            alert("중복된 아이디입니다.");
+                        } else if (data == 0) {
+                            alert("사용가능한 아이디입니다.");
+                        }
                     }
-                }
-            })
+                })
+            }
         }
     </script>
 </head>
@@ -94,7 +99,7 @@
             <div>
                 <label for="id">아이디</label>
                 <input name="id" id="id" type="text" placeholder="아이디 입력"/>
-                <input type="button" value="중복 체크" onclick="idCheck()"/>
+                <input type="button" class="w3-teal" value="중복 체크" onclick="idCheck()"/>
             </div><br>
             <div>
                 <label for="name">이름</label>
@@ -133,10 +138,10 @@
                 <input type="radio" name="gender" value="M"/>남자
                 <input type="radio" name="gender" value="W"/>여자
             </div><br><br>
-            <div>
-                <input type="submit" value="가입하기" />
-                <input type="reset" value="다시 작성"/>
-                <input type="button" value="로그인 화면으로" onclick="location.href='/'"/>
+            <div class="w3-center">
+                <input type="submit" class="w3-button w3-teal" value="가입하기" />
+                <input type="reset" class="w3-button w3-black" value="다시 작성"/>
+                <input type="button" class="w3-button w3-gray" value="로그인 화면으로" onclick="location.href='/'"/>
             </div>
         </form>
     </div>

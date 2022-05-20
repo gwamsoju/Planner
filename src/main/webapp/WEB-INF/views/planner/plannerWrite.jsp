@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Hi Planner</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style type="text/css">
         .wrapper {
             display: grid;
@@ -20,15 +21,15 @@
             font-family: system-ui, serif;
             font-size: 1rem;
             padding: 1rem;
-            border-radius: 2rem;
+
         }
     </style>
 </head>
 <body>
-<div style="background: darkgray">
+<div class="w3-dark-gray">
     <p style="text-align: right">
         <strong>${Data}</strong>님 환영합니다.<br>
-        <input type="button" value="로그아웃" onclick="location.href='/member/logoutProc.do'"></input>
+        <input type="button" value="로그아웃" class="w3-red" onclick="location.href='/member/logoutProc.do'"></input>
     </p>
 </div>
 
@@ -38,18 +39,21 @@
         <form method="post" action="/planner/writeFinish.do">
             <div>
                 <label for="begin">Date</label><br>
-                <input type="text" id="begin" name="begin" placeholder="YYYY/MM/DD"/><br><br>
+                <input type="text" id="begin" name="begin" placeholder="yyyy/MM/dd"/><br><br>
             </div>
             <div>
-                <label for="title">제목</label><br>
+                <label for="title">제목</label>
+                <label for="content">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp내용</label><br>
+
                 <input type="text" id="title" name="title"/>
-                <label for="content">내용</label>
+
                 <input type="text" id="content" name="content"/>
 
             </div>
             <br><br>
-            <input type="submit" value="작성"/>
-            <input type="reset" value="다시 작성"/>
+            <input type="submit" class="w3-teal" value="작성"/>
+            <input type="reset" class="w3-black" value="다시 작성"/>
         </form>
     </div>
 </div>

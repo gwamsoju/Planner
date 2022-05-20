@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>Hi Planner</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style type="text/css">
         .wrapper {
             display: grid;
@@ -41,10 +42,10 @@
     </script>
 </head>
 <body>
-<div style="background: darkgray">
+<div class="w3-dark-gray">
     <p style="text-align: right">
         <strong>${id}</strong>님 환영합니다.<br>
-        <input type="button" value="로그아웃" onclick="location.href='/member/logoutProc.do'"/>
+        <input type="button" value="로그아웃" class="w3-red" onclick="location.href='/member/logoutProc.do'"/>
     </p>
 </div>
 <div class="wrapper">
@@ -97,7 +98,9 @@
             </c:if>
         </div>
        <br><br>
-        <input style="" type="submit" value="정보 수정"/>
+            <div class="w3-center">
+                <input class="w3-gray" type="submit" value="정보 수정"/>
+            </div>
         </form>
     </div>
 </div>
