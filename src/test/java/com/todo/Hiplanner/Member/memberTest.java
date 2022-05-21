@@ -50,4 +50,17 @@ public class memberTest {
         int loginCnt = memberMapper.getLogin(member);
         assertThat(loginCnt).isEqualTo(1);
     }
+
+    @Test
+    public void deleteMember(){
+        Member member = new Member();
+        member.setId("wodud");
+        member.setPwd("12345");
+
+        memberMapper.deleteMember(member);
+
+        int login = memberMapper.getLogin(member);
+
+        assertThat(login).isEqualTo(0);
+    }
 }
