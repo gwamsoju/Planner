@@ -12,4 +12,5 @@ public interface MemberService {
     public int CheckId(Member member);
     public Member getInfo(String id);
     public void changeInfo(Member member);
+    public void deleteMember(Member member);
 }

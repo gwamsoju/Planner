@@ -45,4 +45,10 @@ public class MemberServiceImpl implements MemberService{
         memberMapper.changeInfo(member);
     }
 
+    @Override
+    public void deleteMember(Member member) {
+        memberMapper.deleteMember(member);
+    }
+
+
 }
