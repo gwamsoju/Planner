@@ -37,6 +37,10 @@
         set mail = #{mail}, phone = #{phone}, pwd=#{pwd}
         where id= #{id}
     </update>
+    <!-- 회원 탈퇴 -->
+    <delete id="deleteMember" parameterType="com.todo.Hiplanner.vo.Member">
+        delete from member where id=#{id} and pwd=#{pwd}
+    </delete>
 </mapper>
 
 

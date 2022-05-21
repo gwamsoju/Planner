@@ -89,4 +89,17 @@ public class MemberController {
         return "member/login";
     }
 
+    @GetMapping("/delete.do")
+    public String deleteForm(){
+        return "member/delete";
+    }
+
+    @PostMapping("/delete.do")
+    public String deleteMember(Member member, HttpSession session){
+        member.setId((String)session.getAttribute("id"));
+        memberService.deleteMember(member);
+
+        return "member/login";
+    }
+
 }

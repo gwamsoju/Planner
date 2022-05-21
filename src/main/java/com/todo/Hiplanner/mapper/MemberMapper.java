@@ -20,6 +20,8 @@ public interface MemberMapper {
     public Member getInfo(String id);
     // 회원 정보 처리
     public void changeInfo(Member member);
+    // 회원 탈퇴 처리
+    public void deleteMember(Member member);
 }
 
 

@@ -33,3 +33,15 @@ INSERT INTO MEMO(DO_NUM, TITLE, CONTENT, ID) VALUES(
 
 alter table memo add begin Date;
 
+(회원 탈퇴시 참조 무결성 때문에 회원 삭제가 안됨.
+그래서 Member 테이블의 ID 컬럼을 참조 받는 Memo 테이블의
+데이터를 다 삭제해주기 위해 외래키를 삭제 후 재생성함.)
+ALTER TABLE MEMO DROP CONSTRAINT FK_ID;
+
+ALTER TABLE MEMO
+ADD CONSTRAINT DELETE_ALL
+FOREIGN KEY (ID)
+REFERENCES MEMBER(ID)
+ON DELETE CASCADE;
+
+
