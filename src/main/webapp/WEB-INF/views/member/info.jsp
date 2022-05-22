@@ -45,13 +45,13 @@
 <div class="w3-dark-gray">
     <p style="text-align: right">
         <strong>${id}</strong>님 환영합니다.<br>
-        <input type="button" value="로그아웃" class="w3-red" onclick="location.href='/member/logoutProc.do'"/>
+        <input type="button" value="로그아웃" class="w3-red" onclick="location.href='/members/logout'"/>
     </p>
 </div>
 <div class="wrapper">
     <div class="content" style="border: 1px solid gray">
         <h1 style="text-align: center">Member Info</h1>
-        <form method="post" action="/member/edit.do">
+        <form method="post" action="/members/${id}/update">
         <div>
             <label for="name">이&nbsp&nbsp 름 : </label>
             <input type="text" name="name" id="name" value="${member.name}" readonly="readonly"/>
@@ -100,6 +100,7 @@
        <br><br>
             <div class="w3-center">
                 <input class="w3-gray" type="submit" value="정보 수정"/>
+                <input class="w3-red" type="button" value="회원 탈퇴" onclick="location.href='/members/delete'"/>
             </div>
         </form>
     </div>

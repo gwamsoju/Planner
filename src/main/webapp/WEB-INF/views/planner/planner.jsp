@@ -27,14 +27,14 @@
 <div class="w3-dark-gray">
     <p style="text-align: right">
         <strong>${id}</strong>님 환영합니다.<br>
-        <input type="button" value="내 정보" class="w3-blue" onclick="location.href='/member/getInfo.do?id=${id}'"/>
-        <input type="button" value="로그아웃" class="w3-red" onclick="location.href='/member/logoutProc.do'"/>
+        <input type="button" value="내 정보" class="w3-blue" onclick="location.href='/members/${id}'"/>
+        <input type="button" value="로그아웃" class="w3-red" onclick="location.href='/members/logout'"/>
     </p>
 </div>
 
 <div class="wrapper">
     <h1>What To Do Today !</h1><br>
-    <form method="get" action="/planner/">
+    <form method="get" action="/planners/">
         <input type="date" name="begin"/> <input type="submit" value="보기"/>
     </form>
     <div class="content " style="border: 1px solid gray ">
@@ -44,12 +44,12 @@
             <hr>
         </c:forEach>
         <c:forEach items="${memoList}" var="memo">
-            <a onclick="location.href='/planner/Detail.do?do_num=${memo.do_num}'" >${memo.do_num} ${memo.title}</a>&nbsp&nbsp ${memo.content}<br>
+            <a onclick="location.href='/planners/${do_num}/Detail'" >${memo.do_num} ${memo.title}</a>&nbsp&nbsp ${memo.content}<br>
             <hr>
         </c:forEach>
         <div style="position:relative; width:300px; height: 60px;">
             <div style="position : absolute; clear:left; float:right; width:300px; height:50px; left:0; bottom:0px;">
-                <input type="button" value="+" onclick="location.href='/planner/writeFrom.do'"
+                <input type="button" value="+" onclick="location.href='/planners/write'"
                        class="w3-button w3-circle w3-deep-orange w3-right">
             </div>
         </div>

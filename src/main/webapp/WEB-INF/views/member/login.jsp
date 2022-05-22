@@ -25,20 +25,36 @@
             border-radius: 2rem;
         }
     </style>
+    <script type="text/javascript">
+        function loginCheck() {
+            var id = document.getElementById("id");
+            var pwd = document.getElementById("pwd");
+
+            if (id.value == "") {
+                alert("아이디를 입력해주세요.");
+                return false;
+            }else if(pwd.value == ""){
+                alert("비밀번호를 입력해주세요.");
+                return false;
+            }
+            return true;
+
+        }
+    </script>
 </head>
 <body>
-<div  class="wrapper" >
-    <div class="content" style="border: 1px solid gray">
-        <form method="post" action="/member/loginProc.do">
-            <h1>Login</h1>
-            <label for="id">ID</label><br>
-                <input type="text" id="id" name="id" placeholder="아이디 입력"><br>
-            <label for="pwd">Password</label><br>
-            <input type="password" id="pwd" name="pwd" placeholder="비밀번호 입력">&nbsp<input type="submit" class="w3-button w3-blue" value="로그인"><br><br>
-            <input type="button" value="회원 가입" class="w3-button w3-black" onclick="location.href='/member/join.do'">
-        </form>
+    <div  class="wrapper" >
+        <div class="content" style="border: 1px solid gray">
+            <form method="post" action="/members/login">
+                <h1>Login</h1>
+                <label for="id">ID</label><br>
+                    <input type="text" id="id" name="id" placeholder="아이디 입력"><br>
+                <label for="pwd">Password</label><br>
+                <input type="password" id="pwd" name="pwd" placeholder="비밀번호 입력">&nbsp<input type="submit" class="w3-button w3-blue" value="로그인" onclick="loginCheck()"><br><br>
+                <input type="button" value="회원 가입" class="w3-button w3-black" onclick="location.href='/members/join'">
+            </form>
+        </div>
     </div>
-</div>
 </body>
 </html>
 

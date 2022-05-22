@@ -29,27 +29,24 @@
 <div class="w3-dark-gray">
     <p style="text-align: right">
         <strong>${Data}</strong>님 환영합니다.<br>
-        <input type="button" value="로그아웃" class="w3-red" onclick="location.href='/member/logoutProc.do'"></input>
+        <input type="button" value="로그아웃" class="w3-red" onclick="location.href='/members/logout'"></input>
     </p>
 </div>
 
 <div class="wrapper" >
     <div class="content" style="border: 1px solid gray">
         <h1>Write Do!</h1>
-        <form method="post" action="/planner/writeFinish.do">
+        <form method="post" action="/planners/write">
             <div>
                 <label for="begin">Date</label><br>
-                <input type="text" id="begin" name="begin" placeholder="yyyy/MM/dd"/><br><br>
+                <input type="date" id="begin" name="begin"/><br><br>
             </div>
             <div>
                 <label for="title">제목</label>
                 <label for="content">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp내용</label><br>
-
                 <input type="text" id="title" name="title"/>
-
                 <input type="text" id="content" name="content"/>
-
             </div>
             <br><br>
             <input type="submit" class="w3-teal" value="작성"/>

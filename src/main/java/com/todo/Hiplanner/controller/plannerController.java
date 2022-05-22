@@ -7,21 +7,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
 @Controller
-@RequestMapping("/planner")
+@RequestMapping("/planners")
 @RequiredArgsConstructor
 public class plannerController {
 
     private final MemoService memoService;
 
-    @GetMapping("/")
+    @GetMapping("/{begin}")
     public ModelAndView planner(Memo memo, ModelAndView mv, HttpSession session){
 
         memo.setId((String)session.getAttribute("id"));
@@ -31,24 +34,26 @@ public class plannerController {
         return mv;
     }
 
-    @GetMapping("/writeFrom.do")
+    @GetMapping("/write")
     public ModelAndView writeFrom(HttpSession session, ModelAndView mv,Memo memo){
         String sid = (String)session.getAttribute("id");
         mv.addObject("Data",sid);
-        mv.setViewName("/planner/plannerWrite");
+        mv.setViewName("planner/Write");
         return mv;
     }
 
-    @PostMapping("/writeFinish.do")
-    public String insertMemo( Memo memo, RedirectView rv, HttpSession session){
-
+    @PostMapping("/write")
+    public String insertMemo(Memo memo, RedirectView rv, HttpSession session, @RequestParam("begin") String begin){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(begin, formatter);
+        memo.setBegin(date);
         memo.setId((String)session.getAttribute("id"));
         memoService.insertMemo(memo);
 
-        return "redirect:/planner/Writesuccess";
+        return "redirect:/planners/success";
     }
 
-    @GetMapping("/Writesuccess")
+    @GetMapping("/success")
     public ModelAndView success(ModelAndView mv, Memo memo, HttpSession session){
         memo.setId((String)session.getAttribute("id"));
         List<Memo> memoList = memoService.getMemo(memo);
@@ -57,13 +62,13 @@ public class plannerController {
         return mv;
     }
 
-    @GetMapping("/Detail.do")
+    @GetMapping("/{do_num}/Detail")
     public ModelAndView getMemoDetail(ModelAndView mv, Memo memo, HttpSession session){
         memo.setId((String)session.getAttribute("id"));
         Memo memoDetail = memoService.getMemoDetail(memo);
 
         mv.addObject("memoDetail",memoDetail);
-        mv.setViewName("/planner/plannerDetail");
+        mv.setViewName("planner/Detail");
         return mv;
     }
 

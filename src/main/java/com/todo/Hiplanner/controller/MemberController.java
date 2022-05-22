@@ -1,39 +1,32 @@
 package com.todo.Hiplanner.controller;
 
 import com.todo.Hiplanner.service.MemberService;
-import com.todo.Hiplanner.service.MemoService;
 import com.todo.Hiplanner.vo.Member;
-import com.todo.Hiplanner.vo.Memo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
+import java.time.LocalDate;
 
 @Controller
-@RequestMapping("/member")
+@RequestMapping("/members")
 @RequiredArgsConstructor
 public class MemberController {
 
     private final MemberService memberService;
-    private final MemoService memoService;
 
 
-    @RequestMapping("/loginProc.do")
-    public ModelAndView loginDo(ModelAndView mv, Member member, HttpSession session, RedirectView rv, Memo memo){
+    @RequestMapping("/login")
+    public ModelAndView loginDo(ModelAndView mv, Member member, HttpSession session, RedirectView rv){
         int count = memberService.getLogin(member);
+        LocalDate currentDate = LocalDate.now();
 
         if(count == 1){
             session.setAttribute("id", member.getId());
-            System.out.println("member.getId() = " + member.getId());
-
+            mv.addObject("begin",currentDate);
             mv.setViewName("main");
         }else{
             rv.setUrl("/");
@@ -42,20 +35,17 @@ public class MemberController {
         return mv;
     }
 
-    @GetMapping("/logoutProc.do")
-    public ModelAndView logoutDo(ModelAndView mv, RedirectView rv, HttpSession session){
+    @GetMapping("/logout")
+    public String logoutDo(HttpSession session){
         session.removeAttribute("id");
-
-        rv.setUrl("/");
-        mv.setView(rv);
-        return mv;
+        return "member/login";
     }
-    @GetMapping("/join.do")
+    @GetMapping("/join")
     public String joinForm(){
         return "/member/join";
     }
 
-    @PostMapping("/joinProc.do")
+    @PostMapping("/join")
     public String joinProc(Member member, RedirectView rv,String id){
         int result = memberService.CheckId(member);
 
@@ -68,33 +58,33 @@ public class MemberController {
     }
 
     @ResponseBody
-    @RequestMapping("/IdCheck")
+    @RequestMapping("/idCheck")
     public int idCheck(Member member){
         return memberService.CheckId(member);
     }
 
-    @GetMapping("/getInfo.do")
-    public ModelAndView getInfo(ModelAndView mv, HttpSession session,String id){
-
+    @GetMapping("/{id}")
+    public ModelAndView getInfo(ModelAndView mv, HttpSession session){
+        String id = (String)session.getAttribute("id");
         Member memberinfo = memberService.getInfo(id);
 
         mv.addObject("member",memberinfo);
-        mv.setViewName("/member/memberInfo");
+        mv.setViewName("member/info");
         return mv;
     }
 
-    @PostMapping("/edit.do")
+    @PostMapping("/{id}/update")
     public String changeInfo(Member member){
         memberService.changeInfo(member);
         return "member/login";
     }
 
-    @GetMapping("/delete.do")
+    @GetMapping("/delete")
     public String deleteForm(){
         return "member/delete";
     }
 
-    @PostMapping("/delete.do")
+    @PostMapping("/{id}/delete")
     public String deleteMember(Member member, HttpSession session){
         member.setId((String)session.getAttribute("id"));
         memberService.deleteMember(member);

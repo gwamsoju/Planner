@@ -26,12 +26,12 @@
     <div class="w3-dark-gray">
         <p style="text-align: right">
             <strong>${id}</strong>님 환영합니다.<br>
-            <input type="button" value="로그아웃" class="w3-red" onclick="location.href='/member/logoutProc.do'"/>
+            <input type="button" value="로그아웃" class="w3-red" onclick="location.href='/members/logout'"/>
         </p>
     </div>
     <div  class="wrapper" >
         <div class="content" style="border: 1px solid gray">
-            <form method="post" action="/member/delete.do">
+            <form method="post" action="/members/${id}/delete">
 
                 <h3>회원 탈퇴를 원하시면 아래에 비밀번호를 입력해주세요.</h3>
                 <input type="password" id="pwd" name="pwd" placeholder="비밀번호 입력">
