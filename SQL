@@ -49,3 +49,7 @@ alter table memo add end VARCHAR2(20 CHAR) Not Null;
 alter table memo drop column begin;
 alter table memo add begin VARCHAR2(20 CHAR) Not Null;
 
+(do_num 값을 가져오면 값이 0으로 나와서 planno라는 NUMBER 타입의 컬럼을 추가해서
+planno를 가지고 메모 상세보기하는 데 사용하기 위함.)
+alter table memo add planno NUMBER(5) not null;
+
