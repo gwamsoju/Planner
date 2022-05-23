@@ -19,7 +19,7 @@ public class MemberController {
     private final MemberService memberService;
 
 
-    @RequestMapping("/login")
+    @PostMapping("/login")
     public ModelAndView loginDo(ModelAndView mv, Member member, HttpSession session, RedirectView rv){
         int count = memberService.getLogin(member);
         LocalDate currentDate = LocalDate.now();
@@ -58,7 +58,7 @@ public class MemberController {
     }
 
     @ResponseBody
-    @RequestMapping("/idCheck")
+    @RequestMapping("/id/check")
     public int idCheck(Member member){
         return memberService.CheckId(member);
     }

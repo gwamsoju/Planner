@@ -38,4 +38,9 @@ public class MemoServiceImpl implements MemoService{
         return plannerMapper.getMemoDetail(memo);
     }
 
+    @Override
+    public void deleteMemo(Memo memo) {
+        plannerMapper.deleteMemo(memo);
+    }
+
 }

@@ -10,4 +10,5 @@ public interface MemoService {
     public List<Memo> getMemo(Memo memo);
     public void insertMemo(Memo memo);
     public Memo getMemoDetail(Memo memo);
+    public void deleteMemo(Memo memo);
 }

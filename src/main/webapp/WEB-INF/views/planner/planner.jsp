@@ -38,15 +38,20 @@
         <input type="date" name="begin"/> <input type="submit" value="보기"/>
     </form>
     <div class="content " style="border: 1px solid gray ">
-        <c:forEach items="${memoList}" var="memo" begin="1" end="1" step="1">
-             <label for="begin">Date</label><br>
-            <span name="begin" id="begin">${memo.begin}</span><br>
+
+            <label for="begin">Date</label><br>
+            <span name="begin" id="begin">${begin}</span><br>
             <hr>
-        </c:forEach>
-        <c:forEach items="${memoList}" var="memo">
-            <a onclick="location.href='/planners/${do_num}/Detail'" >${memo.do_num} ${memo.title}</a>&nbsp&nbsp ${memo.content}<br>
-            <hr>
-        </c:forEach>
+        <c:if test="${memoList.size() eq 0}">
+            등록된 일정이 없습니다.
+        </c:if>
+        <c:if test="${memoList.size() ne 0}">
+            <c:forEach items="${memoList}" var="memo">
+                <a onclick="location.href='/planners/${memo.planno}/Detail'" >
+                        ${memo.title}</a>&nbsp&nbsp ${memo.content}<br>
+                <hr>
+            </c:forEach>
+        </c:if>
         <div style="position:relative; width:300px; height: 60px;">
             <div style="position : absolute; clear:left; float:right; width:300px; height:50px; left:0; bottom:0px;">
                 <input type="button" value="+" onclick="location.href='/planners/write'"
