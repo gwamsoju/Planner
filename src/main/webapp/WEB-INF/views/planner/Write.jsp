@@ -38,9 +38,8 @@
         <h1>Write Do!</h1>
         <form method="post" action="/planners/write">
             <div>
-                <label for="begin">시작일</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                &nbsp&nbsp&nbsp<label for="end">종료일</label><br>
-                <input type="date" id="begin" name="begin"/> ~  <input type="date" id="end" name="end"/><br><br>
+                <label for="begin">Date</label><br>
+                <input type="date" id="begin" name="begin"/><br><br>
             </div>
             <div>
                 <label for="title">제목</label>

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.List;
 
@@ -20,10 +19,8 @@ public class MemoServiceImpl implements MemoService{
 
     @Override
     public List<Memo> getMemo(Memo memo) {
-        LocalDate localDate = LocalDate.now();//For reference
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String begin = localDate.format(formatter);
-        memo.setBegin(begin);
+        LocalDate currentDate = LocalDate.now();
+        memo.setBegin(currentDate);
         return plannerMapper.getMemo(memo);
     }
 
