@@ -12,8 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
@@ -30,6 +28,7 @@ public class plannerController {
         memo.setId((String)session.getAttribute("id"));
         List<Memo> memoList = memoService.getMemo(memo);
         mv.addObject("memoList",memoList);
+        mv.addObject("begin",memo.getBegin());
         mv.setViewName("/planner/planner");
         return mv;
     }
@@ -47,7 +46,6 @@ public class plannerController {
         memo.setBegin(begin);
         memo.setId((String)session.getAttribute("id"));
         memoService.insertMemo(memo);
-
         return "redirect:/planners/success";
     }
 
@@ -56,11 +54,12 @@ public class plannerController {
         memo.setId((String)session.getAttribute("id"));
         List<Memo> memoList = memoService.getMemo(memo);
         mv.addObject("memoList",memoList);
+        mv.addObject("begin",memo.getBegin());
         mv.setViewName("/planner/planner");
         return mv;
     }
 
-    @GetMapping("/{do_num}/Detail")
+    @GetMapping("/{planno}/Detail")
     public ModelAndView getMemoDetail(ModelAndView mv, Memo memo, HttpSession session){
         memo.setId((String)session.getAttribute("id"));
         Memo memoDetail = memoService.getMemoDetail(memo);
@@ -68,6 +67,14 @@ public class plannerController {
         mv.addObject("memoDetail",memoDetail);
         mv.setViewName("planner/Detail");
         return mv;
+    }
+
+    @GetMapping("/{planno}/delete")
+    public String deleteMemo(Memo memo, HttpSession session){
+        memo.setId((String)session.getAttribute("id"));
+        memoService.deleteMemo(memo);
+
+        return "redirect:/planners/success";
     }
 
 }

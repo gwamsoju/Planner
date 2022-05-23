@@ -23,5 +23,6 @@ public class Memo {
     private String id;
     private String begin;
     private String end;
+    private int planno;
 
 }

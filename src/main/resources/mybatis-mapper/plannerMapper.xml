@@ -13,8 +13,10 @@
             MEMO_NUM.NEXTVAL, #{title}, #{content}, #{id}, #{begin}, #{end}, (SELECT COUNT(DISTINCT PLANNO)+1 FROM memo))
     </insert>
     <select id="getMemoDetail" resultType="com.todo.Hiplanner.vo.Memo" parameterType="com.todo.Hiplanner.vo.Memo">
-        select title, content, wdate, begin
-        from memo where id = #{id} and do_num = #{do_num}
+        select title, content, wdate, begin, planno
+        from memo where id = #{id} and planno=#{planno}
     </select>
-
+    <delete id="deleteMemo" parameterType="com.todo.Hiplanner.vo.Memo">
+        delete from memo where id=#{id} and planno=#{planno}
+    </delete>
 </mapper>

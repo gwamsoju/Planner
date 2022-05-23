@@ -75,7 +75,7 @@
                 alert("아이디를 입력해주세요.");
             }else {
                 $.ajax({
-                    url: "/members/idCheck",
+                    url: "/members/id/check",
                     type: "POST",
                     dataType: "JSON",
                     data: {"id": $("#id").val()},
