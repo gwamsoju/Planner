@@ -42,12 +42,12 @@
         }
 
         function joinConfirm(){
-            const id = document.getElementById('id');
-            const name = document.getElementById('name');
-            const mail = document.getElementById('mail');
-            const job = document.getElementById('job');
-            const phone = document.getElementById('phone');
-            const gender = document.getElementById('gender');
+            var id = document.getElementById('id');
+            var name = document.getElementById('name');
+            var mail = document.getElementById('mail');
+            var job = document.getElementById('job');
+            var phone = document.getElementById('phone');
+            var gender = document.getElementById('gender');
 
            if(id.value == ""){
                alert('아이디를 입력해주세요.');
@@ -75,7 +75,7 @@
                 alert("아이디를 입력해주세요.");
             }else {
                 $.ajax({
-                    url: "/member/IdCheck",
+                    url: "/members/idCheck",
                     type: "POST",
                     dataType: "JSON",
                     data: {"id": $("#id").val()},
@@ -95,7 +95,7 @@
 <div class="wrapper">
     <div class="content" style="border: 1px solid gray">
         <h1>회원 가입</h1><br>
-        <form method="post" action="/member/joinProc.do" onsubmit="return joinConfirm()">
+        <form method="post" action="/members/join" onsubmit="return joinConfirm()">
             <div>
                 <label for="id">아이디</label>
                 <input name="id" id="id" type="text" placeholder="아이디 입력"/>
