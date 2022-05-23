@@ -44,9 +44,7 @@ public class plannerController {
 
     @PostMapping("/write")
     public String insertMemo(Memo memo, RedirectView rv, HttpSession session, @RequestParam("begin") String begin){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date = LocalDate.parse(begin, formatter);
-        memo.setBegin(date);
+        memo.setBegin(begin);
         memo.setId((String)session.getAttribute("id"));
         memoService.insertMemo(memo);
 
@@ -58,7 +56,7 @@ public class plannerController {
         memo.setId((String)session.getAttribute("id"));
         List<Memo> memoList = memoService.getMemo(memo);
         mv.addObject("memoList",memoList);
-        mv.setViewName("main");
+        mv.setViewName("/planner/planner");
         return mv;
     }
 

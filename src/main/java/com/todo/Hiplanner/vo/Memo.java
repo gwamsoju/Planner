@@ -20,7 +20,8 @@ public class Memo {
     private Date wdate;
     private Date udate;
     private Date ddate;
-    private LocalDate begin;
     private String id;
+    private String begin;
+    private String end;
 
 }
