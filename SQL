@@ -44,4 +44,8 @@ FOREIGN KEY (ID)
 REFERENCES MEMBER(ID)
 ON DELETE CASCADE;
 
+(end 컬럼을 VARCHAR2 타입으로 생성하고 begin 컬럼을 VARCHAR2 타입으로 변경해줌.)
+alter table memo add end VARCHAR2(20 CHAR) Not Null;
+alter table memo drop column begin;
+alter table memo add begin VARCHAR2(20 CHAR) Not Null;
 
