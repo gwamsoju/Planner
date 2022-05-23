@@ -5,12 +5,12 @@
 <mapper namespace="com.todo.Hiplanner.mapper.plannerMapper">
 
     <select id="getMemo" resultType="com.todo.Hiplanner.vo.Memo" parameterType="com.todo.Hiplanner.vo.Memo">
-        select do_num, title, content, wdate, begin,end
+        select do_num, title, content, wdate, begin, end, planno
         from memo where id = #{id} and begin = #{begin}
     </select>
     <insert id="insertMemo" parameterType="com.todo.Hiplanner.vo.Memo">
-        INSERT INTO MEMO(DO_NUM, TITLE, CONTENT, ID, begin, end) VALUES(
-            MEMO_NUM.NEXTVAL, #{title}, #{content}, #{id}, #{begin}, #{end})
+        INSERT INTO MEMO(DO_NUM, TITLE, CONTENT, ID, begin, end, planno) VALUES(
+            MEMO_NUM.NEXTVAL, #{title}, #{content}, #{id}, #{begin}, #{end}, (SELECT COUNT(DISTINCT PLANNO)+1 FROM memo))
     </insert>
     <select id="getMemoDetail" resultType="com.todo.Hiplanner.vo.Memo" parameterType="com.todo.Hiplanner.vo.Memo">
         select title, content, wdate, begin
