@@ -91,4 +91,21 @@ public class MemoTest {
 
 
     }
+
+
+    // 메모 내용 변경 테스트
+    @Test
+    public void updateMemo(){
+        Memo memo = new Memo();
+        memo.setId("wodud");
+        memo.setTitle("기능구현");
+        memo.setContent("메모 수정");
+        memo.setPlanno(2);
+        plannerMapper.updateMemo(memo);
+
+        Memo memoDetail = plannerMapper.getMemoDetail(memo);
+
+        assertThat(memoDetail.getContent()).isEqualTo("메모 수정");
+    }
+
 }
