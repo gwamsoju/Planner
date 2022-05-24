@@ -12,5 +12,4 @@ public interface plannerMapper {
     public void insertMemo(Memo memo);
     public Memo getMemoDetail(Memo memo);
     public void deleteMemo(Memo memo);
-    public void updateMemo(Memo memo);
 }

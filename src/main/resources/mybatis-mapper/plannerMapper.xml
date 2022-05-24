@@ -19,8 +19,4 @@
     <delete id="deleteMemo" parameterType="com.todo.Hiplanner.vo.Memo">
         delete from memo where id=#{id} and planno=#{planno}
     </delete>
-    <update id="updateMemo" parameterType="com.todo.Hiplanner.vo.Memo">
-        update memo set title=#{title}, content=#{content}
-        where id=#{id} and planno=#{planno}
-    </update>
 </mapper>

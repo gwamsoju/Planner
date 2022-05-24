@@ -77,11 +77,4 @@ public class plannerController {
         return "redirect:/planners/success";
     }
 
-    @PostMapping("/{planno}/edit")
-    public String updateMemo(Memo memo, HttpSession session){
-        memo.setId((String)session.getAttribute("id"));
-        memoService.updateMemo(memo);
-        return "redirect:/planners/success";
-    }
-
 }
