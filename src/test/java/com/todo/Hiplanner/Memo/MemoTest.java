@@ -20,9 +20,8 @@ public class MemoTest {
     @Autowired
     private plannerMapper plannerMapper;
 
-    // 메모 작성 테스트
     @Test
-    public void '메모를 작성한다'(){
+    public void 메모작성(){
 
         Memo memo = new Memo();
 
@@ -42,9 +41,8 @@ public class MemoTest {
         assertThat(memo1.getTitle()).isEqualTo("야구");
     }
 
-    // 메모 상세보기 테스트
     @Test
-    public void '메모의 상세보기를 한다'(){
+    public void 메모상세보기(){
         Memo memo = new Memo();
 
         memo.setTitle("야구");
@@ -61,9 +59,8 @@ public class MemoTest {
         assertThat(memoDetail.getTitle()).isEqualTo("야구");
     }
 
-    //메모 삭제 테스트
     @Test
-    public void '메모가 잘 삭제됐나?'(){
+    public void 메모삭제(){
         Memo memo = new Memo();
 
         memo.setTitle("야구");
@@ -92,10 +89,8 @@ public class MemoTest {
 
     }
 
-
-    // 메모 내용 변경 테스트
     @Test
-    public void '메모가 제대로 변경됐나?'(){
+    public void 메모변경(){
         Memo memo = new Memo();
         memo.setId("wodud");
         memo.setTitle("기능구현");

@@ -14,7 +14,7 @@ public class DependencyTest1 {
 
 
     @Test
-    public void test(){
+    public void 의존주입테스트(){
         AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(HiplannerApplication.class);
         MemberServiceImpl memberService = ac.getBean(MemberServiceImpl.class);
 

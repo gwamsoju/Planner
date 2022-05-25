@@ -18,7 +18,7 @@ public class Test1 {
     Member member = new Member();
 
     @Test
-    public void getCnt(){
+    public void 마이바티스연동테스트1(){
 
         int cnt = memberMapper.getCnt();
 
@@ -27,7 +27,7 @@ public class Test1 {
 
     //XML 방식
     @Test
-    public void getCnt2(){
+    public void 마이바티스연동테스트2(){
         int cnt = memberMapper.getLogin(member);
 
         assertThat(cnt).isEqualTo(1);
