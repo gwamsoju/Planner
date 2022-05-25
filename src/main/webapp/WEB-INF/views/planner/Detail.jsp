@@ -35,7 +35,7 @@
     </div>
     <div  class="wrapper" >
         <div class="content" style="border: 1px solid gray">
-            <form method="post" action="/planner/edit">
+            <form method="post" action="/planners/${memoDetail.planno}/edit">
                 <h3>메모 상세보기</h3>
                 <label for="date">Date</label><br>
                 <input type="text" id="date" name="date" value="${memoDetail.begin}" readonly="readonly"><hr>
