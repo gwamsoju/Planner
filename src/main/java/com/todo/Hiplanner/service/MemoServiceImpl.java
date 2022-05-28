@@ -28,6 +28,11 @@ public class MemoServiceImpl implements MemoService{
     }
 
     @Override
+    public List<Memo> getOtherMemo(Memo memo) {
+        return plannerMapper.getMemo(memo);
+    }
+
+    @Override
     public void insertMemo(Memo memo) {
 
         plannerMapper.insertMemo(memo);

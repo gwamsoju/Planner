@@ -1,7 +1,9 @@
 package com.todo.Hiplanner.controller;
 
 import com.todo.Hiplanner.service.MemberService;
+import com.todo.Hiplanner.service.MemoService;
 import com.todo.Hiplanner.vo.Member;
+import com.todo.Hiplanner.vo.Memo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +12,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 @RequestMapping("/members")
@@ -17,16 +20,17 @@ import java.time.LocalDate;
 public class MemberController {
 
     private final MemberService memberService;
-
+    private final MemoService memoService;
 
     @PostMapping("/login")
-    public ModelAndView loginDo(ModelAndView mv, Member member, HttpSession session, RedirectView rv){
+    public ModelAndView loginDo(ModelAndView mv, Member member, HttpSession session, RedirectView rv, Memo memo){
         int count = memberService.getLogin(member);
         LocalDate currentDate = LocalDate.now();
-
+        List<Memo> memoList = memoService.getMemo(memo);
         if(count == 1){
             session.setAttribute("id", member.getId());
             mv.addObject("begin",currentDate);
+            mv.addObject("memoList",memoList);
             mv.setViewName("main");
         }else{
             rv.setUrl("/");
