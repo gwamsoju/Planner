@@ -27,7 +27,7 @@
 <div class="w3-black w3-bar">
     <input type="button" value="로그아웃" class="w3-red w3-bar-item w3-right" onclick="location.href='/members/logout'"/>
     <input type="button" value="마이페이지" class="w3-blue w3-bar-item w3-right" onclick="location.href='/members/${id}'"/>
-    <button type="button" class="w3-green w3-left  w3-bar-item" onclick="location.href='/messages/message'">메시지</button>
+    <button type="button" class="w3-green w3-left  w3-bar-item" onclick="location.href='/messages/${id}'">메시지</button>
 </div>
 <div class="wrapper">
     <div class="content">

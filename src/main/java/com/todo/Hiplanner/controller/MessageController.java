@@ -1,21 +1,22 @@
 package com.todo.Hiplanner.controller;
 
 import com.todo.Hiplanner.service.MessageService;
+import com.todo.Hiplanner.vo.Message;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/messages")
 @RequiredArgsConstructor
 public class MessageController {
 
-    private MessageService messageService;
+    private final MessageService messageService;
 
-    @GetMapping("/message")
-    public String getMessages(){
-        return "message/message";
+    @PostMapping("/write")
+    public String sendMessage(Message message){
+        messageService.sendMessage(message);
+        return "redirect:/messages/success";
     }
 }

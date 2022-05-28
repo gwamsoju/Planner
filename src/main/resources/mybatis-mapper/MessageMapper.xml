@@ -9,11 +9,11 @@
     </insert>
     <select id="selectMessages" parameterType="com.todo.Hiplanner.vo.Message" resultType="com.todo.Hiplanner.vo.Message">
         select
-            mes_no, mes_con, wdate, read_check, send_id
+           mes_no, mes_con, read_check, send_id, recv_id
         from
             message
         where
-            send_id=#{send_id} and recv_id=#{recv_id} and isshow='Y'
+            recv_id=#{recv_id} and isshow='Y'
         ORDER BY
             wdate desc
     </select>
