@@ -24,14 +24,9 @@
     </style>
 </head>
 <body>
-<div class="w3-dark-gray">
-    <p style="text-align: right">
-        <strong>${id}</strong>님 환영합니다.<br>
-        <input type="button" value="내 정보" class="w3-blue" onclick="location.href='/members/${id}'"/>
-        <input type="button" value="로그아웃" class="w3-red" onclick="location.href='/members/logout'"/>
-    </p>
+<div class="w3-black w3-bar">
+    <%@ include file="/WEB-INF/views/include/header.jsp" %>
 </div>
-
 <div class="wrapper">
     <h1>What To Do Today !</h1><br>
     <form method="get" action="/planners/">

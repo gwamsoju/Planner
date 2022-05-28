@@ -5,95 +5,17 @@
   Time: 오후 10:21
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
     <title>Hi Planner</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/Member.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <style type="text/css">
-        .wrapper {
-            display: grid;
-            place-items: center;
-            min-height: 100vh;
-        }
-
-        .content {
-            font-family: system-ui, serif;
-            font-size: 1rem;
-            padding: 1rem;
-            border-radius: 2rem;
-        }
-    </style>
-    <script type="text/javascript">
-
-        function passConfirm(){
-            const pwd = document.getElementById('pwd');
-            const pwd_re = document.getElementById('pwd_re');
-            const message = document.getElementById('message');
-
-            if(pwd.value == pwd_re.value){
-                message.innerHTML = "비밀번호 일치";
-                message.style.color = 'green';
-            }else{
-                message.innerHTML = "비밀번호 불일치";
-                message.style.color = 'red';
-            }
-        }
-
-        function joinConfirm(){
-            var id = document.getElementById('id');
-            var name = document.getElementById('name');
-            var mail = document.getElementById('mail');
-            var job = document.getElementById('job');
-            var phone = document.getElementById('phone');
-            var gender = document.getElementById('gender');
-
-           if(id.value == ""){
-               alert('아이디를 입력해주세요.');
-               id.focus();
-               return false;
-           }else if(name.value == ""){
-               alert('이름을 입력해주세요.');
-               name.focus();
-               return false;
-           }else if(mail.value ==""){
-               alert('이메일을 입력해주세요.');
-               return false;
-           }else if(job.value == ""){
-               alert('직업을 선택 혹은 직접 입력해주세요.');
-               return false;
-           }else if(phone.value == ""){
-               alert('전화번호를 입력해주세요.');
-               return false;
-           }
-           return true;
-        }
-
-        function idCheck(){
-            if($("#id").val() == "" ){
-                alert("아이디를 입력해주세요.");
-            }else {
-                $.ajax({
-                    url: "/members/id/check",
-                    type: "POST",
-                    dataType: "JSON",
-                    data: {"id": $("#id").val()},
-                    success: function (data) {
-                        if (data == 1) {
-                            alert("중복된 아이디입니다.");
-                        } else if (data == 0) {
-                            alert("사용가능한 아이디입니다.");
-                        }
-                    }
-                })
-            }
-        }
-    </script>
 </head>
 <body>
-<div class="wrapper">
-    <div class="content" style="border: 1px solid gray">
+<div class="w3-display-container" style="height:100%">
+    <div class="w3-padding w3-display-middle w3-border">
         <h1>회원 가입</h1><br>
         <form method="post" action="/members/join" onsubmit="return joinConfirm()">
             <div>
@@ -141,7 +63,7 @@
             <div class="w3-center">
                 <input type="submit" class="w3-button w3-teal" value="가입하기" />
                 <input type="reset" class="w3-button w3-black" value="다시 작성"/>
-                <input type="button" class="w3-button w3-gray" value="로그인 화면으로" onclick="location.href='/'"/>
+                <input type="button" class="w3-button w3-gray" value="로그인 화면으로" id="lbtn" onclick="changeURL()"/>
             </div>
         </form>
     </div>

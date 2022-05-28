@@ -16,19 +16,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class MessageTest {
 
     @Autowired
-    private MessageMapper messageMapper;
-    @Autowired
     private MessageService messageService;
 
     @Test
-    @Transactional// Test 후 DB 롤백
-    public void 쪽지_보내기_성공후_쪽지_목록_가져오기(){
+    public void 쪽지_보내기(){
         //given
         Message message = new Message();
         message.setMes_con("안녕하세요");
         message.setSend_id("dlwodud");
         message.setRecv_id("wodud");
-        message.setIsshow("Y");
+        message.setIsShow("Y");
         //when
         messageService.sendMessage(message);
         List<Message> messages = messageService.selectMessages(message);
@@ -43,10 +40,10 @@ public class MessageTest {
         message.setRecv_id("ckdrl");
         message.setSend_id("wodud");
         message.setMes_no(1);
-        message.setIsshow("Y");
+        message.setIsShow("Y");
         //when
-        messageMapper.deleteMessage(message);
-        List<Message> messages = messageMapper.selectMessages(message);
+        messageService.deleteMessage(message);
+        List<Message> messages = messageService.selectMessages(message);
         //then
         assertThat(messages.size()).isEqualTo(0);
     }

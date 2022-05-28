@@ -2,11 +2,8 @@ package com.todo.Hiplanner.vo;
 
 import lombok.*;
 
-@Setter
-@Getter
-@ToString
-@NoArgsConstructor
-@AllArgsConstructor
+//TODO: @Builder 어노테이션 사용하여 테스트 코드 변경 예정.
+@Data
 public class Member {
 
     private String id;

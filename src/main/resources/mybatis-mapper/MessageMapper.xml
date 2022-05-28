@@ -8,25 +8,25 @@
         VALUES((SELECT COUNT(DISTINCT MES_NO)+1 FROM MESSAGE),#{mes_con},#{send_id},#{recv_id})
     </insert>
     <select id="selectMessages" parameterType="com.todo.Hiplanner.vo.Message" resultType="com.todo.Hiplanner.vo.Message">
-        select
-           mes_no, mes_con, read_check, send_id, recv_id
-        from
-            message
-        where
-            recv_id=#{recv_id} and isshow='Y'
+        SELECT
+            MES_NO, MES_CON, READ_CHECK, SEND_ID, RECV_ID
+        FROM
+            MESSAGE
+        WHERE
+                RECV_ID = #(recvId} AND ISSHOW='Y'
         ORDER BY
-            wdate desc
+            CREATEDAT DESC
     </select>
     <select id="detailMessage" parameterType="com.todo.Hiplanner.vo.Message" resultType="com.todo.Hiplanner.vo.Message">
-        select
-            mes_no, mes_con, wdate, read_check, send_id
-        from
-            message
-        where
-             mes_no = #{mes_no}
+        SELECT
+            MES_NO, MES_CON, CREATEAT, READ_CHECK, SEND_ID
+        FROM
+            MESSAGE
+        WHERE
+            MES_NO = #{mesNo}
     </select>
     <update id="deleteMessage" parameterType="com.todo.Hiplanner.vo.Message">
-        update message set isshow='N'
-        where send_id=#{send_id} and mes_no=#{mes_no}
+        UPDATE MESSAGE SET ISSHOW='N'
+        WHERE SEND_ID=#{sendId} AND MES_NO=#{mesNo}
     </update>
 </mapper>

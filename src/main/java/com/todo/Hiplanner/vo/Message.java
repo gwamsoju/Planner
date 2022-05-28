@@ -4,11 +4,7 @@ import lombok.*;
 
 import java.sql.Date;
 
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
+@Data
 public class Message {
 
     private int mes_no;
@@ -17,6 +13,6 @@ public class Message {
     private String read_check;
     private String send_id;
     private String recv_id;
-    private String isshow;
+    private String isShow;
 
 }
