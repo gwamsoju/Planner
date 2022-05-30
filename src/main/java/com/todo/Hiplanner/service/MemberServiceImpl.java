@@ -50,5 +50,8 @@ public class MemberServiceImpl implements MemberService{
         memberMapper.deleteMember(member);
     }
 
-
+    @Override
+    public List<String> SearchSuggest(String id) {
+       return memberMapper.SearchSuggest(id);
+    }
 }

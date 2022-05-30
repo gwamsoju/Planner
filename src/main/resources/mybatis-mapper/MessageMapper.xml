@@ -5,28 +5,36 @@
 <mapper namespace="com.todo.Hiplanner.mapper.MessageMapper">
     <insert id="sendMessage" parameterType="com.todo.Hiplanner.vo.Message">
         INSERT INTO MESSAGE(MES_NO, MES_CON, SEND_ID, RECV_ID)
-        VALUES((SELECT COUNT(DISTINCT MES_NO)+1 FROM MESSAGE),#{mes_con},#{send_id},#{recv_id})
+        VALUES((SELECT COUNT(DISTINCT MES_NO)+1 FROM MESSAGE),#{mesCon},#{sendId},#{recvId})
     </insert>
     <select id="selectMessages" parameterType="com.todo.Hiplanner.vo.Message" resultType="com.todo.Hiplanner.vo.Message">
-        SELECT
-            MES_NO, MES_CON, READ_CHECK, SEND_ID, RECV_ID
-        FROM
-            MESSAGE
-        WHERE
-                RECV_ID = #(recvId} AND ISSHOW='Y'
+        select
+           mes_no, mes_con, read_check, send_id, recv_id, createAt
+        from
+            message
+        where
+            recv_id=#{recvId} and isshow='Y'
         ORDER BY
-            CREATEDAT DESC
+            createAt desc
     </select>
     <select id="detailMessage" parameterType="com.todo.Hiplanner.vo.Message" resultType="com.todo.Hiplanner.vo.Message">
-        SELECT
-            MES_NO, MES_CON, CREATEAT, READ_CHECK, SEND_ID
-        FROM
-            MESSAGE
-        WHERE
-            MES_NO = #{mesNo}
+        select
+            mes_no, mes_con, createAt, read_check, send_id
+        from
+            ( select
+                  mes_no, mes_con, read_check, send_id, recv_id,createAt
+              from
+                  message
+              where
+                  recv_id=#{recvId} and isshow='Y'
+              order by
+                  createAt desc
+            )
+        where
+            mes_no = #{mesNo}
     </select>
     <update id="deleteMessage" parameterType="com.todo.Hiplanner.vo.Message">
-        UPDATE MESSAGE SET ISSHOW='N'
-        WHERE SEND_ID=#{sendId} AND MES_NO=#{mesNo}
+        update message set isshow='N'
+        where send_id=#{sendId} and mes_no=#{mesNo}
     </update>
 </mapper>

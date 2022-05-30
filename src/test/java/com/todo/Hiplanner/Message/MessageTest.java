@@ -19,13 +19,14 @@ public class MessageTest {
     private MessageService messageService;
 
     @Test
-    public void 쪽지_보내기(){
+    @Transactional// Test 후 DB 롤백
+    public void 쪽지_보내기_성공후_쪽지_목록_가져오기(){
         //given
         Message message = new Message();
-        message.setMes_con("안녕하세요");
-        message.setSend_id("dlwodud");
-        message.setRecv_id("wodud");
-        message.setIsShow("Y");
+        message.setMesCon("안녕하세요");
+        message.setSendId("dlwodud");
+        message.setRecvId("wodud");
+        message.setIsshow("Y");
         //when
         messageService.sendMessage(message);
         List<Message> messages = messageService.selectMessages(message);
@@ -34,13 +35,24 @@ public class MessageTest {
     }
 
     @Test
+    public void 쪽지_리스트에서_원하는_쪽지_가져오기(){
+        //given
+        Message message = new Message();
+        message.setMesNo(1);
+        //when
+        Message message1 = messageService.detailMessage(message);
+        //then
+        assertThat(message1.getMesNo()).isEqualTo(1);
+    }
+
+    @Test
     public void 쪽지_삭제(){
         //given
         Message message = new Message();
-        message.setRecv_id("ckdrl");
-        message.setSend_id("wodud");
-        message.setMes_no(1);
-        message.setIsShow("Y");
+        message.setRecvId("ckdrl");
+        message.setSendId("wodud");
+        message.setMesNo(1);
+        message.setIsshow("Y");
         //when
         messageService.deleteMessage(message);
         List<Message> messages = messageService.selectMessages(message);

@@ -5,18 +5,34 @@
   Time: 오후 1:29
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Hi Planner</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style type="text/css">
+        .wrapper {
+            display: grid;
+            place-items: center;
+            min-height: 50vh;
+        }
+
+        .content {
+            font-family: system-ui, serif;
+            font-size: 1rem;
+            padding: 1rem;
+
+        }
+    </style>
 </head>
 <body>
 <div class="w3-black w3-bar">
-    <%@ include file="/WEB-INF/views/include/header.jsp" %>
+    <input type="button" value="로그아웃" class="w3-red w3-bar-item w3-right" onclick="location.href='/members/logout'"/>
+    <input type="button" value="마이페이지" class="w3-blue w3-bar-item w3-right" onclick="location.href='/members/${id}'"/>
+    <button type="button" class="w3-green w3-left  w3-bar-item" onclick="location.href='/messages'">메시지</button>
 </div>
-<div class="w3-display-container" style="height:100%">
-    <div class="w3-padding w3-display-middle w3-border">
+<div class="wrapper" >
+    <div class="content" style="border: 1px solid gray">
         <h1>Write Do!</h1>
         <form method="post" action="/planners/write">
             <div>

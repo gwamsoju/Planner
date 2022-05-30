@@ -11,6 +11,7 @@
 <head>
     <title>Hi Planner</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <style type="text/css">
         .wrapper {
             display: grid;
@@ -22,17 +23,40 @@
             padding: 5px;
         }
     </style>
+    <script type="text/javascript">
+        function otherDay(){
+           $.ajax({
+                url:"/planners/${begin}/other",
+                type:"GET",
+                dataType: "JSON",
+                data: {"id":$("#id").val(),
+                        "begin": $("#begin1").val()},
+               success: function(result){
+                   var e = $(result).find('#frm');
+                   $("#frm").html(e);
+               },
+               error:function(error){
+                    alert("Error!");
+               }
+
+           });
+        }
+    </script>
 </head>
 <body>
 <div class="w3-black w3-bar">
-    <%@ include file="/WEB-INF/views/include/header.jsp" %>
+    <input type="button" value="로그아웃" class="w3-red w3-bar-item w3-right" onclick="location.href='/members/logout'"/>
+    <input type="button" value="마이페이지" class="w3-blue w3-bar-item w3-right" onclick="location.href='/members/${id}'"/>
+    <button type="button" class="w3-green w3-left  w3-bar-item" onclick="location.href='/messages'">메시지</button>
 </div>
+
 <div class="wrapper">
     <h1>What To Do Today !</h1><br>
-    <form method="get" action="/planners/">
-        <input type="date" name="begin"/> <input type="submit" value="보기"/>
+    <form method="get">
+        <input type="date" name="begin1" id="begin1"/>&nbsp<button type="button" onclick="otherDay()" >보기</button>
+        <input type="hidden" name="id" id="id" value="${id}"/>
     </form>
-    <div class="content " style="border: 1px solid gray ">
+    <div class="content" name="frm" id="frm" style="border: 1px solid gray ">
 
             <label for="begin">Date</label><br>
             <span name="begin" id="begin">${begin}</span><br>

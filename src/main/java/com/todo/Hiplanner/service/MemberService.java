@@ -13,4 +13,5 @@ public interface MemberService {
     public Member getInfo(String id);
     public void changeInfo(Member member);
     public void deleteMember(Member member);
+    public List<String> SearchSuggest(String id);
 }

@@ -26,7 +26,7 @@ public class MessageServiceImpl implements MessageService{
 
     @Override
     public Message detailMessage(Message message) {
-        return null;
+        return messageMapper.detailMessage(message);
     }
 
     @Override

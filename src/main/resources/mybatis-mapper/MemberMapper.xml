@@ -5,41 +5,51 @@
 <mapper namespace="com.todo.Hiplanner.mapper.MemberMapper">
     <!-- 로그인 -->
     <select id="getLogin" resultType="int" parameterType="com.todo.Hiplanner.vo.Member">
-        SELECT
-            COUNT(*)
-        FROM
-            MEMBER
-        WHERE
-            ID = #{id}
-            AND PWD = #{pwd}
+        select
+               count(*)
+        from
+             member
+        where
+              id =#{id}
+              and pwd = #{pwd}
     </select>
 
     <!-- 회원 가입 -->
     <insert id="insertMember" parameterType="com.todo.Hiplanner.vo.Member">
-        INSERT INTO MEMBER
-        VALUES(#{id},#{name},#{pwd},#{job},#{mail},#{phone},#{gender})
+        insert into MEMBER
+        values(#{id},#{name},#{pwd},#{job},#{mail},#{phone},#{gender})
     </insert>
 
     <!-- 아이디 중복 체크 -->
     <select id="CheckId" resultType="int" parameterType="com.todo.Hiplanner.vo.Member">
-        SELECT COUNT(*) FROM MEMBER WHERE ID = #{id}
+        select count(*) from member where id = #{id}
     </select>
 
     <!-- 회원 정보 조회 -->
     <select id="getInfo" resultType="com.todo.Hiplanner.vo.Member" parameterType="String">
-        SELECT ID , NAME, PWD, JOB, MAIL, PHONE, GENDER
-        FROM MEMBER WHERE ID = #{id}
+        select id, name, pwd, job, mail, phone, gender
+        from member where id = #{id}
     </select>
 
     <!-- 회원 정보 변경 -->
     <update id="changeInfo" parameterType="com.todo.Hiplanner.vo.Member" >
-        UPDATE MEMBER SET MAIL = #{mail} , PHONE = #{phone} , PWD = #{pwd}
-        WHERE ID = #{id}
+        update member
+        set mail = #{mail}, phone = #{phone}, pwd=#{pwd}
+        where id= #{id}
     </update>
     <!-- 회원 탈퇴 -->
     <delete id="deleteMember" parameterType="com.todo.Hiplanner.vo.Member">
-        DELETE FROM MEMBER WHERE ID = #{id} AND PWD = #{pwd}
+        delete from member where id=#{id} and pwd=#{pwd}
     </delete>
+
+    <select id="SearchSuggest" parameterType="String" resultType="String">
+        select
+            id
+        from
+            member
+        where
+              id != #{id}
+    </select>
 </mapper>
 
 

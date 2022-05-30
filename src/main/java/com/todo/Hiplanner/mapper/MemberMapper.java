@@ -4,6 +4,8 @@ import com.todo.Hiplanner.vo.Member;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 @Mapper
 public interface MemberMapper {
 
@@ -22,6 +24,7 @@ public interface MemberMapper {
     public void changeInfo(Member member);
     // 회원 탈퇴 처리
     public void deleteMember(Member member);
+    public List<String> SearchSuggest(String id);
 }
 
 

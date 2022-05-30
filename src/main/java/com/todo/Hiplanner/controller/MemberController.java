@@ -1,6 +1,7 @@
 package com.todo.Hiplanner.controller;
 
 import com.todo.Hiplanner.service.MemberService;
+import com.todo.Hiplanner.service.MessageService;
 import com.todo.Hiplanner.vo.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,6 @@ import java.time.LocalDate;
 public class MemberController {
 
     private final MemberService memberService;
-
 
     @PostMapping("/login")
     public ModelAndView loginDo(ModelAndView mv, Member member, HttpSession session, RedirectView rv){
@@ -91,5 +91,4 @@ public class MemberController {
 
         return "member/login";
     }
-
 }
