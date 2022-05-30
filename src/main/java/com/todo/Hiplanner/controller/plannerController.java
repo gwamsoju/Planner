@@ -4,10 +4,8 @@ import com.todo.Hiplanner.service.MemoService;
 import com.todo.Hiplanner.vo.Memo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -21,16 +19,14 @@ import java.util.List;
 public class plannerController {
 
     private final MemoService memoService;
-
+    
     @GetMapping("/{begin}")
-    public ModelAndView planner(Memo memo, ModelAndView mv, HttpSession session){
+    public String planner(Memo memo, Model model){
 
-        memo.setId((String)session.getAttribute("id"));
-        List<Memo> memoList = memoService.getMemo(memo);
-        mv.addObject("memoList",memoList);
-        mv.addObject("begin",memo.getBegin());
-        mv.setViewName("/planner/planner");
-        return mv;
+        List<Memo> memoList = memoService.getOtherMemo(memo);
+        model.addAttribute("memoList",memoList);
+        model.addAttribute("begin",memo.getBegin());
+        return "/planner/other";
     }
 
     @GetMapping("/write")
@@ -55,7 +51,7 @@ public class plannerController {
         List<Memo> memoList = memoService.getMemo(memo);
         mv.addObject("memoList",memoList);
         mv.addObject("begin",memo.getBegin());
-        mv.setViewName("/planner/planner");
+        mv.setViewName("main");
         return mv;
     }
 
