@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.todo.Hiplanner.mapper.MessageMapper">
+    <insert id="sendMessage" parameterType="com.todo.Hiplanner.vo.Message">
+        INSERT INTO MESSAGE(MESNO, MESCON, SENDID, RECVID)
+        VALUES((SELECT COUNT(DISTINCT MESNO)+1 FROM MESSAGE),#{mesCon},#{sendId},#{recvId})
+    </insert>
+    <select id="selectMessages" parameterType="com.todo.Hiplanner.vo.Message" resultType="com.todo.Hiplanner.vo.Message">
+        SELECT
+            MESNO, MESCON, SENDID, RECVID, CREATEDAT
+        FROM
+            MESSAGE
+        WHERE
+            RECVID = #{recvId} AND ISSHOW='Y'
+        ORDER BY
+            CREATEDAT DESC
+    </select>
+    <select id="detailMessage" parameterType="com.todo.Hiplanner.vo.Message" resultType="com.todo.Hiplanner.vo.Message">
+        SELECT
+            MESNO, MESCON, CREATEDAT, SENDID
+        FROM
+            MESSAGE
+        WHERE
+            MESNO = #{mesNo}
+    </select>
+    <update id="deleteMessage" parameterType="com.todo.Hiplanner.vo.Message">
+        UPDATE MESSAGE SET ISSHOW='N'
+        WHERE RECVID=#{recvId} AND MESNO=#{mesNo}
+    </update>
+</mapper>

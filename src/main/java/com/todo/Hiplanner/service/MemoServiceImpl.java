@@ -20,7 +20,7 @@ public class MemoServiceImpl implements MemoService{
 
     @Override
     public List<Memo> getMemo(Memo memo) {
-        LocalDate localDate = LocalDate.now();//For reference
+        LocalDate localDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String begin = localDate.format(formatter);
         memo.setBegin(begin);

@@ -5,22 +5,22 @@
 <mapper namespace="com.todo.Hiplanner.mapper.plannerMapper">
 
     <select id="getMemo" resultType="com.todo.Hiplanner.vo.Memo" parameterType="com.todo.Hiplanner.vo.Memo">
-        select do_num, title, content, wdate, begin, end, planno
-        from memo where id = #{id} and begin = #{begin}
+        SELECT TITLE, CONTENT, WDATE, BEGIN, END, PLANNO
+        FROM MEMO WHERE ID= #{id} AND BEGIN = #{begin}
     </select>
     <insert id="insertMemo" parameterType="com.todo.Hiplanner.vo.Memo">
-        INSERT INTO MEMO(DO_NUM, TITLE, CONTENT, ID, begin, end, planno) VALUES(
-            MEMO_NUM.NEXTVAL, #{title}, #{content}, #{id}, #{begin}, #{end}, (SELECT COUNT(DISTINCT PLANNO)+1 FROM memo))
+        INSERT INTO MEMO(DO_NUM, TITLE, CONTENT, ID, BEGIN, END, PLANNO) VALUES(
+        MEMO_NUM.NEXTVAL, #{title}, #{content}, #{id}, #{begin}, #{end}, (SELECT COUNT(DISTINCT PLANNO)+1 FROM MEMO))
     </insert>
     <select id="getMemoDetail" resultType="com.todo.Hiplanner.vo.Memo" parameterType="com.todo.Hiplanner.vo.Memo">
-        select title, content, wdate, begin, planno
-        from memo where id = #{id} and planno=#{planno}
+        SELECT TITLE,CONTENT, WDATE ,BEGIN, PLANNO
+        FROM MEMO WHERE ID = #{id} AND PLANNO= #{planno}
     </select>
     <delete id="deleteMemo" parameterType="com.todo.Hiplanner.vo.Memo">
-        delete from memo where id=#{id} and planno=#{planno}
+        DELETE FROM MEMO WHERE ID=#{id} AND PLANNO=#{planno}
     </delete>
     <update id="updateMemo" parameterType="com.todo.Hiplanner.vo.Memo">
-        update memo set title=#{title}, content=#{content}
-        where id=#{id} and planno=#{planno}
+        UPDATE MEMO SET TITLE=#{title}, CONTENT=#{content}
+        WHERE ID=#{id} AND PLANNO=#{planno}
     </update>
 </mapper>

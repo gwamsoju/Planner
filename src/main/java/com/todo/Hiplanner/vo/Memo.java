@@ -1,20 +1,13 @@
 package com.todo.Hiplanner.vo;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 public class Memo {
 
-    private long do_num;
+    private Long do_num;
     private String title;
     private String content;
     private Date wdate;
@@ -23,6 +16,6 @@ public class Memo {
     private String id;
     private String begin;
     private String end;
-    private int planno;
+    private Integer planno;
 
 }

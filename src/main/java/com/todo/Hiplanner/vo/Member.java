@@ -1,12 +1,8 @@
 package com.todo.Hiplanner.vo;
 
-import lombok.*;
+import lombok.Data;
 
-@Setter
-@Getter
-@ToString
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 public class Member {
 
     private String id;
