@@ -1,6 +1,5 @@
 package com.todo.Hiplanner.Message;
 
-import com.todo.Hiplanner.mapper.MessageMapper;
 import com.todo.Hiplanner.service.MessageService;
 import com.todo.Hiplanner.vo.Message;
 import org.junit.jupiter.api.Test;
