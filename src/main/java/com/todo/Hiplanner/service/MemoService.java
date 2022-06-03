@@ -2,7 +2,6 @@ package com.todo.Hiplanner.service;
 
 import com.todo.Hiplanner.vo.Memo;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public interface MemoService {

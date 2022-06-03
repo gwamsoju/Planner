@@ -16,51 +16,54 @@ public class memberTest {
 
     @Test
     public void 회원정보가져오기(){
+        //given
         String id = "wodud";
+        //when
         Member info = memberMapper.getInfo(id);
-
+        //then
         assertThat(id).isEqualTo(info.getId());
     }
 
     @Test
     public void 회원정보변경(){
-        String id = "wodud";
-        String mail = "asdf@gmail.com";
-        String phone = "010-4444-0000";
-        String pwd = "1111";
-
-        Member member = new Member();
-        member.setId(id);
-        member.setMail(mail);
-        member.setPhone(phone);
-        member.setPwd(pwd);
-
+        //given
+        Member member = Member.builder()
+                        .id("wodud")
+                        .mail("asdf@gmail.com")
+                        .phone("010-4444-0000")
+                        .pwd("1111")
+                        .build();
+        //when
         memberMapper.changeInfo(member);
-
-        Member changeMember = memberMapper.getInfo(id);
-        assertThat(changeMember.getMail()).isEqualTo(mail);
+        Member changeMember = memberMapper.getInfo("wodud");
+        //then
+        assertThat(changeMember.getMail()).isEqualTo("asdf@gmail.com");
     }
 
     @Test
     public void 로그인성공(){
-        Member member = new Member();
-        member.setId("wodud");
-        member.setPwd("12345");
-
+        //given
+        Member member = Member.builder()
+                        .id("wodud")
+                        .pwd("12345")
+                        .build();
+        //when
         int loginCnt = memberMapper.getLogin(member);
+        //then
         assertThat(loginCnt).isEqualTo(1);
     }
 
     @Test
     public void 회원탈퇴(){
-        Member member = new Member();
-        member.setId("wodud");
-        member.setPwd("12345");
-
+        //given
+        Member member = Member.builder()
+                .id("wodud")
+                .pwd("12345")
+                .build();
+        //when
         memberMapper.deleteMember(member);
-
         int login = memberMapper.getLogin(member);
-
+        //then
         assertThat(login).isEqualTo(0);
     }
 }

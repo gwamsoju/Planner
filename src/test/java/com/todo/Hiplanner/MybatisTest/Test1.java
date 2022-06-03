@@ -15,7 +15,6 @@ public class Test1 {
     @Autowired
     private MemberMapper memberMapper;
 
-    Member member = new Member();
 
     @Test
     public void 마이바티스연동테스트1(){
@@ -28,6 +27,8 @@ public class Test1 {
     //XML 방식
     @Test
     public void 마이바티스연동테스트2(){
+        Member member = Member.builder().build();
+
         int cnt = memberMapper.getLogin(member);
 
         assertThat(cnt).isEqualTo(1);
