@@ -22,7 +22,8 @@ public class MessageController {
 
     @GetMapping("/list")
     public ModelAndView getMessages(Message message, ModelAndView mv, HttpSession session){
-        message.setRecvId((String)session.getAttribute("id"));
+        String id = (String)session.getAttribute("id");
+        message.setRecvId(id);
         List<Message> messageList = messageService.selectMessages(message);
         mv.addObject("messageList",messageList);
         mv.setViewName("/message/list");

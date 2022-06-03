@@ -5,6 +5,7 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Member {
 
     private String id;
@@ -15,12 +16,5 @@ public class Member {
     private String phone;
     private String gender;
 
-    @Builder
-    public Member(String id, String pwd, String mail, String phone) {
-        this.id = id;
-        this.pwd = pwd;
-        this.mail = mail;
-        this.phone = phone;
-    }
 
 }
