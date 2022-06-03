@@ -5,7 +5,8 @@ function loginCheck() {
     if (id.value == "") {
         alert("아이디를 입력해주세요.");
         return false;
-    }else if(pwd.value == ""){
+    }
+    if(pwd.value == ""){
         alert("비밀번호를 입력해주세요.");
         return false;
     }
@@ -38,17 +39,21 @@ function joinConfirm(){
         alert('아이디를 입력해주세요.');
         id.focus();
         return false;
-    }else if(name.value == ""){
+    }
+    if(name.value == ""){
         alert('이름을 입력해주세요.');
         name.focus();
         return false;
-    }else if(mail.value ==""){
+    }
+    if(mail.value ==""){
         alert('이메일을 입력해주세요.');
         return false;
-    }else if(job.value == ""){
+    }
+    if(job.value == ""){
         alert('직업을 선택 혹은 직접 입력해주세요.');
         return false;
-    }else if(phone.value == ""){
+    }
+    if(phone.value == ""){
         alert('전화번호를 입력해주세요.');
         return false;
     }
@@ -65,10 +70,10 @@ function idCheck(){
             dataType: "JSON",
             data: {"id": $("#id").val()},
             success: function (data) {
-                if (data == 1) {
-                    alert("중복된 아이디입니다.");
-                } else if (data == 0) {
+                if (data == 0) {
                     alert("사용가능한 아이디입니다.");
+                } else {
+                    alert("이미 해당 ID가 존재합니다.");
                 }
             }
         })
