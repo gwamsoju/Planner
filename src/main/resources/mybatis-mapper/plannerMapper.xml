@@ -6,21 +6,21 @@
 
     <select id="getMemo" resultType="com.todo.Hiplanner.vo.Memo" parameterType="com.todo.Hiplanner.vo.Memo">
         SELECT TITLE, CONTENT, WDATE, BEGIN, END, PLANNO
-        FROM MEMO WHERE ID= #{id} AND BEGIN = #{begin}
+        FROM MEMO WHERE USERNAME = #{username} AND BEGIN = #{begin}
     </select>
     <insert id="insertMemo" parameterType="com.todo.Hiplanner.vo.Memo">
-        INSERT INTO MEMO(DO_NUM, TITLE, CONTENT, ID, BEGIN, END, PLANNO) VALUES(
-        MEMO_NUM.NEXTVAL, #{title}, #{content}, #{id}, #{begin}, #{end}, (SELECT COUNT(DISTINCT PLANNO)+1 FROM MEMO))
+        INSERT INTO MEMO(DO_NUM, TITLE, CONTENT, USERNAME, BEGIN, END, PLANNO) VALUES(
+        MEMO_NUM.NEXTVAL, #{title}, #{content}, #{username}, #{begin}, #{end}, (SELECT COUNT(DISTINCT PLANNO)+1 FROM MEMO))
     </insert>
     <select id="getMemoDetail" resultType="com.todo.Hiplanner.vo.Memo" parameterType="com.todo.Hiplanner.vo.Memo">
         SELECT TITLE,CONTENT, WDATE ,BEGIN, PLANNO
-        FROM MEMO WHERE ID = #{id} AND PLANNO= #{planno}
+        FROM MEMO WHERE USERNAME = #{username} AND PLANNO= #{planno}
     </select>
     <delete id="deleteMemo" parameterType="com.todo.Hiplanner.vo.Memo">
-        DELETE FROM MEMO WHERE ID=#{id} AND PLANNO=#{planno}
+        DELETE FROM MEMO WHERE USERNAME=#{username} AND PLANNO=#{planno}
     </delete>
     <update id="updateMemo" parameterType="com.todo.Hiplanner.vo.Memo">
         UPDATE MEMO SET TITLE=#{title}, CONTENT=#{content}
-        WHERE ID=#{id} AND PLANNO=#{planno}
+        WHERE USERNAME=#{username} AND PLANNO=#{planno}
     </update>
 </mapper>

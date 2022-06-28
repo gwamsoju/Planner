@@ -40,14 +40,14 @@ public class plannerController {
     @PostMapping("/write")
     public String insertMemo(Memo memo, RedirectView rv, HttpSession session, @RequestParam("begin") String begin){
         memo.setBegin(begin);
-        memo.setId((String)session.getAttribute("id"));
+        memo.setUsername((String)session.getAttribute("id"));
         memoService.insertMemo(memo);
         return "redirect:/planners/success";
     }
 
     @GetMapping("/success")
     public ModelAndView success(ModelAndView mv, Memo memo, HttpSession session){
-        memo.setId((String)session.getAttribute("id"));
+        memo.setUsername((String)session.getAttribute("id"));
         List<Memo> memoList = memoService.getMemo(memo);
         mv.addObject("memoList",memoList);
         mv.addObject("begin",memo.getBegin());
@@ -57,7 +57,7 @@ public class plannerController {
 
     @GetMapping("/{planno}/Detail")
     public ModelAndView getMemoDetail(ModelAndView mv, Memo memo, HttpSession session){
-        memo.setId((String)session.getAttribute("id"));
+        memo.setUsername((String)session.getAttribute("id"));
         Memo memoDetail = memoService.getMemoDetail(memo);
 
         mv.addObject("memoDetail",memoDetail);
@@ -67,7 +67,7 @@ public class plannerController {
 
     @GetMapping("/{planno}/delete")
     public String deleteMemo(Memo memo, HttpSession session){
-        memo.setId((String)session.getAttribute("id"));
+        memo.setUsername((String)session.getAttribute("id"));
         memoService.deleteMemo(memo);
 
         return "redirect:/planners/success";
@@ -75,7 +75,7 @@ public class plannerController {
 
     @PostMapping("/{planno}/edit")
     public String updateMemo(Memo memo, HttpSession session){
-        memo.setId((String)session.getAttribute("id"));
+        memo.setUsername((String)session.getAttribute("id"));
         memoService.updateMemo(memo);
         return "redirect:/planners/success";
     }

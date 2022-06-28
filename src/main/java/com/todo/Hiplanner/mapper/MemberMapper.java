@@ -17,11 +17,13 @@ public interface MemberMapper {
     // 아이디 중복 체크
     public int CheckId(Member member);
     // 회원 정보 조회
-    public Member getInfo(String id);
+    public Member getInfo(String username);
     // 회원 정보 처리
     public void changeInfo(Member member);
     // 회원 탈퇴 처리
     public void deleteMember(Member member);
+
+    public Member findByUsername(String username);
 }
 
 

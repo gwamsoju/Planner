@@ -23,7 +23,7 @@ public class MemoTest {
         Memo memo = Memo.builder()
                 .title("야구")
                 .content("야구")
-                .id("wodud")
+                .username("wodud")
                 .begin("2022/05/17")
                 .end("2022/05/17")
                 .build();
@@ -42,7 +42,7 @@ public class MemoTest {
         Memo memo = Memo.builder()
                 .title("야구")
                 .content("야구")
-                .id("wodud")
+                .username("wodud")
                 .begin("2022/05/17")
                 .end("2022/05/17")
                 .planno(3)
@@ -60,7 +60,7 @@ public class MemoTest {
         Memo memo = Memo.builder()
                 .title("야구")
                 .content("야구")
-                .id("wodud")
+                .username("wodud")
                 .begin("2022/05/17")
                 .end("2022/05/17")
                 .planno(1)
@@ -81,7 +81,7 @@ public class MemoTest {
         Memo memo = Memo.builder()
                 .title("기능구현")
                 .content("기능구현")
-                .id("wodud")
+                .username("wodud")
                 .planno(1)
                 .build();
         //when

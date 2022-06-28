@@ -1,6 +1,6 @@
 function loginCheck() {
-    var id = document.getElementById("id");
-    var pwd = document.getElementById("pwd");
+    var id = document.getElementById("username");
+    var pwd = document.getElementById("password");
 
     if (id.value == "") {
         alert("아이디를 입력해주세요.");
@@ -14,7 +14,7 @@ function loginCheck() {
 }
 
 function passConfirm(){
-    const pwd = document.getElementById("pwd");
+    const pwd = document.getElementById("password");
     const pwd_re = document.getElementById("pwd_re");
     const message = document.getElementById("message");
 
@@ -28,7 +28,7 @@ function passConfirm(){
 }
 
 function joinConfirm(){
-    var id = document.getElementById('id');
+    var id = document.getElementById('username');
     var name = document.getElementById('name');
     var mail = document.getElementById('mail');
     var job = document.getElementById('job');
@@ -61,14 +61,16 @@ function joinConfirm(){
 }
 
 function idCheck(){
-    if($("#id").val() == "" ){
+
+
+    if($("#username").val() == "" ){
         alert("아이디를 입력해주세요.");
     }else {
         $.ajax({
             url: "/members/id/check",
             type: "POST",
             dataType: "JSON",
-            data: {"id": $("#id").val()},
+            data: {"username": $("#username").val()},
             success: function (data) {
                 if (data == 0) {
                     alert("사용가능한 아이디입니다.");
@@ -81,7 +83,7 @@ function idCheck(){
 }
 
 function passConfirm(){
-    const pwd = document.getElementById('pwd');
+    const pwd = document.getElementById('password');
     const pwd_re = document.getElementById('pwd_re');
     const message = document.getElementById('message');
 
@@ -94,18 +96,18 @@ function passConfirm(){
     }
 }
 function joinForm(){
-    window.location="/members/join";
+    window.location="/join";
+}
+function deleteForm(){
+    window.location="/members/delete";
 }
 
 function changeURL(){
     $("input").click(function(){
         var value = $(this).attr("id");
         switch(value) {
-            case 'dbtn':
-                window.location = "/members/delete" ;
-                break;
             case 'lbtn':
-                window.location = "/" ;
+                window.location="/";
                 break;
         }
     });

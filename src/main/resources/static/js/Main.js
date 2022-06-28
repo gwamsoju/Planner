@@ -7,7 +7,7 @@ function otherDay(){
 
         type:"GET",
         url:"/planners/${begin}",
-        data: {"id":id, "begin": begin},
+        data: {"username":id, "begin": begin},
         dataType: "text",
         success:function(result){
             $("#frm").css("display","none");
@@ -33,7 +33,6 @@ function changeURL(){
             case 'mebtn':
                 window.location = "/messages/list";
                 break;
-
         }
     });
 }

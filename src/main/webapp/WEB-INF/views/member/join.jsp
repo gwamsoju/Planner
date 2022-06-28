@@ -19,8 +19,8 @@
         <h1>회원 가입</h1><br>
         <form method="post" action="/members/join" onsubmit="return joinConfirm()">
             <div>
-                <label for="id">아이디</label>
-                <input name="id" id="id" type="text" placeholder="아이디 입력"/>
+                <label for="username">아이디</label>
+                <input name="username" id="username" type="text" placeholder="아이디 입력"/>
                 <input type="button" class="w3-teal" value="중복 체크" onclick="idCheck()"/>
             </div><br>
             <div>
@@ -29,8 +29,8 @@
             </div><br>
 
             <div>
-                <label for="pwd">비밀번호</label>
-                <input name="pwd" id="pwd" type="password" placeholder="비밀번호 입력"/>
+                <label for="password">비밀번호</label>
+                <input name="password" id="password" type="password" placeholder="비밀번호 입력"/>
             </div><br>
             <div>
                 <label for="pwd_re">비밀번호 확인</label>

@@ -5,7 +5,9 @@ import com.todo.Hiplanner.service.MemoService;
 import com.todo.Hiplanner.vo.Member;
 import com.todo.Hiplanner.vo.Memo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -21,53 +23,32 @@ public class MemberController {
 
     private final MemberService memberService;
     private final MemoService memoService;
-
-    @PostMapping("/login")
-    public ModelAndView loginDo(ModelAndView mv, Member member, HttpSession session, RedirectView rv, Memo memo){
-        int count = memberService.getLogin(member);
-        LocalDate currentDate = LocalDate.now();
-        List<Memo> memoList = memoService.getMemo(memo);
-        if(count == 1){
-            session.setAttribute("id", member.getId());
-            mv.addObject("begin",currentDate);
-            mv.addObject("memoList",memoList);
-            mv.setViewName("main");
-        }else{
-            rv.setUrl("/");
-            mv.setView(rv);
-        }
-        return mv;
-    }
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @GetMapping("/logout")
     public String logoutDo(HttpSession session){
         session.removeAttribute("id");
         return "member/login";
     }
-    @GetMapping("/join")
-    public String joinForm(){
-        return "/member/join";
-    }
 
     @PostMapping("/join")
-    public String joinProc(Member member, RedirectView rv,String id){
-        int result = memberService.CheckId(member);
+    public String joinProc(Member member){
 
-        if(result == 1){
-            return "/member/join";
-        }else{
-            memberService.insertMember(member);
-            return "redirect:/";
-        }
+        member.setRole("ROLE_USER");
+        String passwordRaw = member.getPassword();
+        String encode = bCryptPasswordEncoder.encode(passwordRaw);
+        member.setPassword(encode);
+        memberService.insertMember(member);
+        return "redirect:/";
     }
 
     @ResponseBody
-    @RequestMapping("/id/check")
+    @PostMapping("/id/check")
     public int idCheck(Member member){
         return memberService.CheckId(member);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{username}")
     public ModelAndView getInfo(ModelAndView mv, HttpSession session){
         String id = (String)session.getAttribute("id");
         Member memberinfo = memberService.getInfo(id);
@@ -77,8 +58,11 @@ public class MemberController {
         return mv;
     }
 
-    @PostMapping("/{id}/update")
+    @PostMapping("/{username}/update")
     public String changeInfo(Member member){
+        String passwordRaw = member.getPassword();
+        String encode = bCryptPasswordEncoder.encode(passwordRaw);
+        member.setPassword(encode);
         memberService.changeInfo(member);
         return "member/login";
     }
@@ -90,7 +74,7 @@ public class MemberController {
 
     @PostMapping("/{id}/delete")
     public String deleteMember(Member member, HttpSession session){
-        member.setId((String)session.getAttribute("id"));
+        member.setUsername((String)session.getAttribute("id"));
         memberService.deleteMember(member);
 
         return "member/login";
