@@ -67,3 +67,14 @@ CREATE TABLE MESSAGE(
     ON DELETE CASCADE
 );
 alter table message add isshow VARCHAR2(1 char) default 'Y';
+
+alter table member add ROLE VARCHAR2(20 CHAR);
+alter table member rename column name to username;
+alter table member rename column pwd to password;
+alter table member rename column username to name;
+alter table member rename column id to username;
+
+ALTER TABLE MEMBER MODIFY password VARCHAR2(100 CHAR);
+ALTER TABLE MEMBER MODIFY username VARCHAR2(50 CHAR);
+ALTER TABLE MEMBER MODIFY name VARCHAR2(50 CHAR);
+
