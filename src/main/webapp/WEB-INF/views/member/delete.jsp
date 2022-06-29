@@ -16,9 +16,10 @@
 </div>
 <div class="w3-display-container" style="height:30%">
     <div class="w3-padding w3-display-middle w3-border">
-        <form method="post" action="/members/${id}/delete">
+        <form method="post" action="/members/${username}/delete">
             <h3>회원 탈퇴를 하시겠습니까? ('회원 탈퇴' 클릭시 바로 탈퇴, '아니요' 클릭시 이전 화면으로 이동)</h3><br>
             <div class="w3-center">
+                <input type="hidden" id="username" name="username" value="${username}"/>
             <input type="submit" class="w3-button w3-red" value="회원 탈퇴" />
             <input type="reset" class="w3-button w3-blue" value="아니요" onclick="history.go(-1)"/>
             </div>

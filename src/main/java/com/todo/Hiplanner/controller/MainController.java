@@ -13,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
@@ -33,11 +32,12 @@ public class MainController {
     }
 
     @GetMapping("/login/result")
-    public String loginDo(Model mv, Member member, HttpSession session, RedirectView rv, Memo memo, Authentication authentication){
+    public String loginDo(Model mv, Memo memo, Authentication authentication){
         LocalDate currentDate = LocalDate.now();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         memo.setUsername(userDetails.getUsername());
         List<Memo> memoList = memoService.getMemo(memo);
+        mv.addAttribute("id",userDetails.getUsername());
         mv.addAttribute("begin", currentDate);
         mv.addAttribute("memoList", memoList);
         return "main";
