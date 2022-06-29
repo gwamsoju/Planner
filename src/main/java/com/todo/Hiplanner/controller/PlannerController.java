@@ -1,6 +1,6 @@
 package com.todo.Hiplanner.controller;
 
-import com.todo.Hiplanner.service.MemoService;
+import com.todo.Hiplanner.service.PlannerService;
 import com.todo.Hiplanner.vo.Memo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -16,9 +16,9 @@ import java.util.List;
 @Controller
 @RequestMapping("/planners")
 @RequiredArgsConstructor
-public class plannerController {
+public class PlannerController {
 
-    private final MemoService memoService;
+    private final PlannerService memoService;
     
     @GetMapping("/{begin}")
     public String planner(Memo memo, Model model){

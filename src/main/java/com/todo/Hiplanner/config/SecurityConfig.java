@@ -21,14 +21,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeRequests()
+                .antMatchers("/members/**","/messages/**","/planners/**").authenticated()
                 .anyRequest().permitAll() // 그외는 접근 가능
             .and()
                 .formLogin()
                 .loginPage("/")
-                .loginProcessingUrl("/login/result")
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/login/result",true)
             .and()
                 .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logoutProc"))
                 .invalidateHttpSession(true);
     }
 }

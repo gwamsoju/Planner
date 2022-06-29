@@ -17,7 +17,7 @@
 <div class="w3-display-container" style="height:100%">
     <div class="w3-padding w3-display-middle w3-border">
         <h1>회원 가입</h1><br>
-        <form method="post" action="/members/join" onsubmit="return joinConfirm()">
+        <form method="post" action="/join" onsubmit="return joinConfirm()">
             <div>
                 <label for="username">아이디</label>
                 <input name="username" id="username" type="text" placeholder="아이디 입력"/>

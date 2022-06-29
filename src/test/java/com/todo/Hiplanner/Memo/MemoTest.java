@@ -1,6 +1,6 @@
 package com.todo.Hiplanner.Memo;
 
-import com.todo.Hiplanner.mapper.plannerMapper;
+import com.todo.Hiplanner.mapper.PlannerMapper;
 import com.todo.Hiplanner.vo.Memo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class MemoTest {
 
     @Autowired
-    private plannerMapper plannerMapper;
+    private PlannerMapper plannerMapper;
 
     // 메모 작성 테스트
     @Test

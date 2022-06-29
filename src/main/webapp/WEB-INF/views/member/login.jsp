@@ -15,7 +15,7 @@
 <body>
 <div class="w3-display-container" style="height:100%">
     <div class="w3-padding w3-display-middle w3-border">
-        <form method="post" action="/login/result">
+        <form method="post" action="/login">
             <h1>Login</h1>
             <label for="username">ID</label><br>
             <input type="text" id="username" name="username" placeholder="아이디 입력"><br>

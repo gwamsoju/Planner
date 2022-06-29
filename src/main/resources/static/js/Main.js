@@ -25,7 +25,7 @@ function changeURL(){
         var value = $(this).attr("id");
         switch(value) {
             case 'obtn':
-                window.location = "/members/logout";
+                window.location = "/logoutProc";
                 break;
             case 'ibtn':
                 window.location = "/members/${id}";

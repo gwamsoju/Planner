@@ -4,7 +4,7 @@ import com.todo.Hiplanner.vo.Memo;
 
 import java.util.List;
 
-public interface MemoService {
+public interface PlannerService {
 
     public List<Memo> getMemo(Memo memo);
     public List<Memo> getOtherMemo(Memo memo);
