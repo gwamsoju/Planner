@@ -21,18 +21,18 @@
 <div class="w3-display-container" style="height:80%">
     <div class="w3-padding w3-display-middle w3-border">
         <h1 style="text-align: center">Member Info</h1>
-        <form method="post" action="/members/${id}/update">
+        <form method="post" action="/members/${member.username}/update">
             <div>
                 <label for="name">이&nbsp&nbsp 름 : </label>
                 <input type="text" name="name" id="name" value="${member.name}" readonly="readonly"/>
             </div><br>
             <div>
                 <label for="id">아이디 : </label>
-                <input type="text" name="id" id="id" value="${member.id}" readonly="readonly"/>
+                <input type="text" name="id" id="id" value="${member.username}" readonly="readonly"/>
             </div><br>
             <div>
-                <label for="pwd">비밀번호 : </label>
-                <input type="password" name="pwd" id="pwd"/>
+                <label for="password">비밀번호 : </label>
+                <input type="password" name="password" id="password"/>
             </div><br>
             <div>
                 <label for="pwd_re">비밀번호 확인 : </label>
@@ -70,7 +70,7 @@
             <br><br>
             <div class="w3-center">
                 <input class="w3-gray" type="submit" value="정보 수정"/>
-                <input class="w3-red" type="button" id="dbtn" value="회원 탈퇴" onclick="changeURL()"/>
+                <input class="w3-red" type="button" id="dbtn" value="회원 탈퇴" onclick="deleteForm()"/>
             </div>
         </form>
     </div>

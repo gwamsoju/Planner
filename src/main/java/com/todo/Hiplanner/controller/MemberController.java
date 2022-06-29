@@ -1,18 +1,18 @@
 package com.todo.Hiplanner.controller;
 
+import com.todo.Hiplanner.config.auth.PrincipalDetails;
 import com.todo.Hiplanner.service.MemberService;
-import com.todo.Hiplanner.service.MemoService;
 import com.todo.Hiplanner.vo.Member;
-import com.todo.Hiplanner.vo.Memo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
-
-import javax.servlet.http.HttpSession;
-import java.time.LocalDate;
-import java.util.List;
 
 @Controller
 @RequestMapping("/members")
@@ -20,77 +20,39 @@ import java.util.List;
 public class MemberController {
 
     private final MemberService memberService;
-    private final MemoService memoService;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @PostMapping("/login")
-    public ModelAndView loginDo(ModelAndView mv, Member member, HttpSession session, RedirectView rv, Memo memo){
-        int count = memberService.getLogin(member);
-        LocalDate currentDate = LocalDate.now();
-        List<Memo> memoList = memoService.getMemo(memo);
-        if(count == 1){
-            session.setAttribute("id", member.getId());
-            mv.addObject("begin",currentDate);
-            mv.addObject("memoList",memoList);
-            mv.setViewName("main");
-        }else{
-            rv.setUrl("/");
-            mv.setView(rv);
-        }
-        return mv;
-    }
-
-    @GetMapping("/logout")
-    public String logoutDo(HttpSession session){
-        session.removeAttribute("id");
-        return "member/login";
-    }
-    @GetMapping("/join")
-    public String joinForm(){
-        return "/member/join";
-    }
-
-    @PostMapping("/join")
-    public String joinProc(Member member, RedirectView rv,String id){
-        int result = memberService.CheckId(member);
-
-        if(result == 1){
-            return "/member/join";
-        }else{
-            memberService.insertMember(member);
-            return "redirect:/";
-        }
-    }
-
-    @ResponseBody
-    @RequestMapping("/id/check")
-    public int idCheck(Member member){
-        return memberService.CheckId(member);
-    }
-
-    @GetMapping("/{id}")
-    public ModelAndView getInfo(ModelAndView mv, HttpSession session){
-        String id = (String)session.getAttribute("id");
+    @GetMapping("/{username}")
+    public ModelAndView getInfo( ModelAndView mv, Authentication authentication){
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String id = userDetails.getUsername();
         Member memberinfo = memberService.getInfo(id);
-
         mv.addObject("member",memberinfo);
         mv.setViewName("member/info");
         return mv;
     }
 
-    @PostMapping("/{id}/update")
+    @PostMapping("/{username}/update")
     public String changeInfo(Member member){
+        String passwordRaw = member.getPassword();
+        String encode = bCryptPasswordEncoder.encode(passwordRaw);
+        member.setPassword(encode);
         memberService.changeInfo(member);
         return "member/login";
     }
 
     @GetMapping("/delete")
-    public String deleteForm(){
+    public String deleteForm(Authentication authentication, Model model){
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String username = userDetails.getUsername();
+        model.addAttribute("username",username);
         return "member/delete";
     }
 
-    @PostMapping("/{id}/delete")
-    public String deleteMember(Member member, HttpSession session){
-        member.setId((String)session.getAttribute("id"));
+    @PostMapping("/{username}/delete")
+    public String deleteMember(Member member, Authentication authentication){
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        member.setUsername(userDetails.getUsername());
         memberService.deleteMember(member);
 
         return "member/login";

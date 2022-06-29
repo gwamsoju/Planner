@@ -1,7 +1,9 @@
 package com.todo.Hiplanner.vo;
 
-import lombok.*;
-import lombok.experimental.FieldNameConstants;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.Date;
 
@@ -17,7 +19,7 @@ public class Memo {
     private Date wdate;
     private Date udate;
     private Date ddate;
-    private String id;
+    private String username;
     private String begin;
     private String end;
     private Integer planno;

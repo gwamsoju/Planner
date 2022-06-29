@@ -1,6 +1,9 @@
 package com.todo.Hiplanner.vo;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
@@ -8,13 +11,13 @@ import lombok.*;
 @Builder
 public class Member {
 
-    private String id;
+    private String username;
     private String name;
-    private String pwd;
+    private String password;
     private String job;
     private String mail;
     private String phone;
     private String gender;
-
+    private String role;
 
 }

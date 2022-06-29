@@ -7,7 +7,7 @@ function otherDay(){
 
         type:"GET",
         url:"/planners/${begin}",
-        data: {"id":id, "begin": begin},
+        data: {"username":id, "begin": begin},
         dataType: "text",
         success:function(result){
             $("#frm").css("display","none");
@@ -25,7 +25,7 @@ function changeURL(){
         var value = $(this).attr("id");
         switch(value) {
             case 'obtn':
-                window.location = "/members/logout";
+                window.location = "/logoutProc";
                 break;
             case 'ibtn':
                 window.location = "/members/${id}";
@@ -33,7 +33,6 @@ function changeURL(){
             case 'mebtn':
                 window.location = "/messages/list";
                 break;
-
         }
     });
 }
