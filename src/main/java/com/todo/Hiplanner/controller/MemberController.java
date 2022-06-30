@@ -1,6 +1,5 @@
 package com.todo.Hiplanner.controller;
 
-import com.todo.Hiplanner.config.auth.PrincipalDetails;
 import com.todo.Hiplanner.service.MemberService;
 import com.todo.Hiplanner.vo.Member;
 import lombok.RequiredArgsConstructor;

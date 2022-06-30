@@ -24,6 +24,7 @@
             <input type="submit" class="w3-button w3-blue" value="로그인" onclick="loginCheck()"><br><br>
             <input type="button" value="회원 가입" class="w3-button w3-black" id="jbtn" onclick="joinForm()">
         </form>
+        <button type="button" onclick="googleLogin()" class="w3-button w3-blue w3-block">구글 로그인</button>
     </div>
 </div>
 </body>

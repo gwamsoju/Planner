@@ -1,6 +1,9 @@
 package com.todo.Hiplanner.config;
 
 import com.todo.Hiplanner.config.auth.PrincipalDetails;
+import com.todo.Hiplanner.config.oauth.PrincipalOAuth2UserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableMBeanExport;
@@ -13,12 +16,10 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    public BCryptPasswordEncoder encodePassword(){
-        return new BCryptPasswordEncoder();
-    }
+    private final PrincipalOAuth2UserService principalOAuth2UserService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -34,6 +35,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logoutProc"))
-                .invalidateHttpSession(true);
+                .invalidateHttpSession(true)
+             .and()
+                .oauth2Login()
+                .loginPage("/login")
+                .defaultSuccessUrl("/login/result",true)
+                .userInfoEndpoint()
+                .userService(principalOAuth2UserService);
     }
 }

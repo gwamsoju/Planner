@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### 깃 허브에서 클라이언트 아이디와 비밀번호를 노출하지 않기 위해 ###
+application-oauth.properties

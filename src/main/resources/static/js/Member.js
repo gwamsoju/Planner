@@ -102,6 +102,10 @@ function deleteForm(){
     window.location="/members/delete";
 }
 
+function googleLogin(){
+    window.location="/oauth2/authorization/google";
+}
+
 function changeURL(){
     $("input").click(function(){
         var value = $(this).attr("id");
