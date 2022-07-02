@@ -34,11 +34,21 @@ Build Tool : Gradle<br>
 - 메시지 목록에 쪽지가 도착한 것을 확인.
 - 해당 메시지를 클릭하면 답장 또는 삭제 기능을 할 수 있음.
 
-현재 Spring Security를 적용하는 중입니다! 
+# Spring Security 
+
+**- 인증이 안된 상태에서 인증이 필요한 요청을 하면 로그인을 요청하는 응답을 함.**
+
+### Ex) 로그인이 안된 상태에서 '/messages/**' 요청을 할 경우 ?
+![image](https://user-images.githubusercontent.com/92564945/176988354-8e7730b7-72f3-473f-969c-b3e251633ab8.png)
+<br>
+**- 회원 가입 요청시 회원을 비밀번호를 암호화하여 DBMS에 저장.**
+![image](https://user-images.githubusercontent.com/92564945/176988641-c87d7426-9f2d-4d4f-973c-2ca50744a528.png)
 
 
+### 구글 API를 사용하여 구글 간편 로그인을 지원하도록 구현함.
 
-
+![image](https://user-images.githubusercontent.com/92564945/176988573-e2f25cf1-d3db-425a-8928-c818bac94ad6.png)
+**- 처음 구글 간편 로그인을 이용할 경우 구글로부터 받아온 정보를 가지고 DBMS에 자동으로 회원가입을 하도록 함.**
 
   
   
