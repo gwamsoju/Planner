@@ -40,6 +40,10 @@
             <div>
                 <label for="mail">이메일</label>
                 <input name="mail" id="mail" type="text" placeholder="이메일 입력"/>
+                &nbsp <button type="button" class="w3-teal" onclick="mailConfirm()">이메일 인증</button>
+                <div style="display: none" name="mail_confirm" id="mail_confirm">
+                    <input type="text" placeholder="인증 번호 입력"/> &nbsp <button type="button" class="w3-teal">인증</button>
+                </div>
             </div><br>
             <div>
                 <label for="job">직업</label>

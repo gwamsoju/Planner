@@ -116,3 +116,7 @@ function changeURL(){
         }
     });
 }
+
+function mailConfirm(){
+    $("#mail_confirm").css("display","block");
+}
