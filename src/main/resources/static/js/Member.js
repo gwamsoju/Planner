@@ -82,6 +82,17 @@ function idCheck(){
     }
 }
 
+function mailConfirm(){
+    $("#mail_confirm").css("display","block");
+
+    $.ajax({
+        url:"/mailConfirm",
+        type:"POST",
+        dataType:"JSON",
+        data:{"mail": $("#mail").val()}
+    });
+}
+
 function passConfirm(){
     const pwd = document.getElementById('password');
     const pwd_re = document.getElementById('pwd_re');
@@ -117,6 +128,3 @@ function changeURL(){
     });
 }
 
-function mailConfirm(){
-    $("#mail_confirm").css("display","block");
-}

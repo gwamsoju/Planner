@@ -1,5 +1,6 @@
 package com.todo.Hiplanner.controller;
 
+import com.todo.Hiplanner.service.MailService;
 import com.todo.Hiplanner.service.MemberService;
 import com.todo.Hiplanner.service.PlannerService;
 import com.todo.Hiplanner.vo.Member;
@@ -24,6 +25,7 @@ public class MainController {
 
     private final MemberService memberService;
     private final PlannerService memoService;
+    private final MailService mailService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @GetMapping("/join")
@@ -64,6 +66,20 @@ public class MainController {
     @PostMapping("/id/check")
     public int idCheck(Member member){
         return memberService.CheckId(member);
+    }
+
+    @ResponseBody
+    @PostMapping("/mailConfirm")
+    public String mailConfirm(String mail) throws Exception {
+        System.out.println("인증 이메일 : " + mail);
+        // 인증 번호를 해당 이메일로 전송
+        int number = mailService.sendEmail(mail);
+        // 그리고 인증 번호를 해당 DB에 저장
+
+        // 유저가 입력한 번호와 DB의 값을 비교
+
+        // 번호가 맞다면 DB에 인증을 완료했다는 것을 넣어야 하는데 ..... <input> 태그에 저장해두고 회원 가입 버튼 누르면 같이 전송되도록 ?
+        return "인증 번호 보내기 성공!";
     }
 
 }
