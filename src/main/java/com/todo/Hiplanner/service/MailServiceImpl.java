@@ -20,7 +20,7 @@ public class MailServiceImpl implements MailService {
     // 인증 번호 생성 메서드
     public static void confirmNumber(){
         Random random = new Random();
-        int i = random.nextInt(9999);
+        int i = random.nextInt(8888) + 1111;
 
         confirmNumber = i;
     }
