@@ -1,5 +1,6 @@
 package com.todo.Hiplanner.controller;
 
+import com.todo.Hiplanner.service.MailService;
 import com.todo.Hiplanner.service.MemberService;
 import com.todo.Hiplanner.service.PlannerService;
 import com.todo.Hiplanner.vo.Member;
@@ -24,6 +25,7 @@ public class MainController {
 
     private final MemberService memberService;
     private final PlannerService memoService;
+    private final MailService mailService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @GetMapping("/join")
@@ -64,6 +66,18 @@ public class MainController {
     @PostMapping("/id/check")
     public int idCheck(Member member){
         return memberService.CheckId(member);
+    }
+
+    @ResponseBody
+    @PostMapping("/mailConfirm")
+    public String mailConfirm(String mail) throws Exception {
+        System.out.println("인증 이메일 : " + mail);
+        // 인증 번호를 해당 이메일로 전송
+        int number = mailService.sendEmail(mail);
+
+        String str = ""+number;
+
+        return str;
     }
 
 }

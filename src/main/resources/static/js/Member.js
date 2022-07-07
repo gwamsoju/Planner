@@ -33,7 +33,9 @@ function joinConfirm(){
     var mail = document.getElementById('mail');
     var job = document.getElementById('job');
     var phone = document.getElementById('phone');
-    var gender = document.getElementById('gender');
+    var pwd = document.getElementById('password');
+    var pwd_re = document.getElementById('pwd_re');
+    var gender = $('input:radio[name=gender]').is(':checked');
 
     if(id.value == ""){
         alert('아이디를 입력해주세요.');
@@ -50,11 +52,27 @@ function joinConfirm(){
         return false;
     }
     if(job.value == ""){
-        alert('직업을 선택 혹은 직접 입력해주세요.');
+        alert('직업을 선택해주세요.');
         return false;
     }
     if(phone.value == ""){
         alert('전화번호를 입력해주세요.');
+        return false;
+    }
+    if(!gender){
+        alert('성별 체크를 해주세요.');
+        return false;
+    }
+    if($("#Confirm3").val() == ""){
+        alert("이메일 인증을 해주세요.");
+        return false;
+    }
+    if($("#idConfirm").val() == ""){
+        alert("아이디 중복 체크를 해주세요.");
+        return false;
+    }
+    if(pwd.value != pwd_re.value){
+        alert("비밀번호가 다릅니다.");
         return false;
     }
     return true;
@@ -74,11 +92,47 @@ function idCheck(){
             success: function (data) {
                 if (data == 0) {
                     alert("사용가능한 아이디입니다.");
+                    $("#idConfirm").attr("value","T");
                 } else {
                     alert("이미 해당 ID가 존재합니다.");
                 }
             }
         })
+    }
+}
+
+function sendNumber(){
+
+    if($("#mail").val() == ""){
+        alert("이메일을 입력해주세요.");
+        $("#mail").focus();
+        return false;
+    }else {
+        $("#mailConfirm").css("display", "block");
+        $.ajax({
+            url: "/mailConfirm",
+            type: "POST",
+            dataType: "JSON",
+            data: {"mail": $("#mail").val()},
+            success: function (data) {
+                alert("인증 번호를 발송했습니다.");
+                $("#Confirm2").attr("value", data);
+            }
+        });
+    }
+}
+function mailConfirm(){
+    var mailConfirm = $("#Confirm").val();
+    var mailConfirm2 = $("#Confirm2").val();
+
+    if(mailConfirm == mailConfirm2){
+        alert("인증되었습니다.");
+        document.getElementById("mail").readOnly = true;
+        document.getElementById("sendButton").hidden = true;
+        $("#Confirm3").attr("value","T");
+        $("#mailConfirm").css("display", "none");
+    }else{
+        alert("인증 번호가 다릅니다.");
     }
 }
 
@@ -116,3 +170,4 @@ function changeURL(){
         }
     });
 }
+

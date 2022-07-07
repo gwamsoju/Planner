@@ -22,6 +22,7 @@
                 <label for="username">아이디</label>
                 <input name="username" id="username" type="text" placeholder="아이디 입력"/>
                 <input type="button" class="w3-teal" value="중복 체크" onclick="idCheck()"/>
+                <input type="hidden" name="idConfirm" id="idConfirm" value=""/>
             </div><br>
             <div>
                 <label for="name">이름</label>
@@ -40,6 +41,14 @@
             <div>
                 <label for="mail">이메일</label>
                 <input name="mail" id="mail" type="text" placeholder="이메일 입력"/>
+                &nbsp <button type="button" class="w3-teal" name="sendButton" id="sendButton" onclick="sendNumber()">이메일 인증</button>
+                <div style="display: none" name="mailConfirm" id="mailConfirm">
+                    <input type="text" name="Confirm" id="Confirm" placeholder="인증 번호 입력"/>
+                    &nbsp
+                    <button type="button" class="w3-teal" id="confirmButton" name="confirmButton" onclick="mailConfirm()">인증</button>
+                </div>
+                <input type="hidden" name="Confirm2" id="Confirm2" value=""/>
+                <input type="hidden" name="Confirm3" id="Confirm3" value=""/>
             </div><br>
             <div>
                 <label for="job">직업</label>
@@ -56,9 +65,9 @@
                 <input name="phone" id="phone" type="tel" placeholder="'-'도 입력"/>
             </div><br>
             <div>
-                성별
-                <input type="radio" name="gender" value="M"/>남자
-                <input type="radio" name="gender" value="W"/>여자
+               <label>성별</label>
+                <input type="radio" name="gender" id="Mgender" value="M"/>남자
+                <input type="radio" name="gender" id="Wgender" value="W"/>여자
             </div><br><br>
             <div class="w3-center">
                 <input type="submit" class="w3-button w3-teal" value="가입하기" />
